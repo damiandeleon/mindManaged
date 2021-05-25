@@ -4,6 +4,6 @@ import axios from "axios";
 
 export default {
     getDrugInfo: function (prescription) {
-        return axios.get("https://api.fda.gov/drug/drugsfda.json?search=products.brand_name.exact:" + prescription);
+        return axios.get("https://api.fda.gov/drug/drugsfda.json?search=products.brand_name:" + prescription)
     }
 };
