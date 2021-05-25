@@ -21,17 +21,6 @@ class Search extends Component {
         this.setState({ search: event.target.value });
     };
 
-    handleFormSubmit = event => {
-        event.preventDefault();
-        API.getDrugInfo(this.state.search)
-            .then(res => {
-                if (res.data.status === "error") {
-                    throw new Error(res.data.message);
-                }
-                this.setState({ results: res.data.message, error: "" });
-            })
-            .catch(err => this.setState({ error: err.message }));
-    };
     render() {
         return (
             <div>
