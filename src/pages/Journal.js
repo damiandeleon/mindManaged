@@ -57,7 +57,7 @@ const Journal = () => {
                         </div>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Journal Entry</Form.Label>
-                            <Form.Control as="textarea" rows={3} />
+                            <Form.Control as="textarea" rows={8} />
                         </Form.Group>
                         
                     </Form>
