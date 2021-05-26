@@ -1,5 +1,9 @@
 import React from "react"
-import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis,  YAxis, RadialChart} from 'react-vis';
+import { Container, Row, Col } from 'react-bootstrap';
+import MoodLine from "../components/MoodLine/MoodLine";
+import MoodPie from "../components/MoodPie/MoodPie"
+import MedIntake from "../components/MedIntake/MedIntake"
+import ChartTitle from "../components/ChartTitle/ChartTitle"
 import '../../node_modules/react-vis/dist/style.css';
 
 function Home() {
@@ -33,34 +37,21 @@ function Home() {
 
   return (
     <div>
-      
-      {/* Mood Line Chart */}
-      <h1 className="text-center">Mood Line Chart</h1>
-      <XYPlot height={500} width={500} className="container-fluid">
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis />
-        <YAxis />
-        <LineSeries data={data} />
-      </XYPlot>
-
-      {/* Mood Pie Chart */}
-      <h1>Mood Pie Chart</h1>
-      <RadialChart
-        data={myData}
-        width={500}
-        height={500} 
-      />
-      {/* Medicine Intake */}
-      <h1>Medicine Intake</h1>
-      <XYPlot height={500} width={500} className="">
-        <VerticalGridLines />
-        <HorizontalGridLines />
-        <XAxis />
-        <YAxis />
-        <LineSeries data={data2} />
-      </XYPlot>
-
+      <Container fluid>
+        <Row>
+          <Col className="mood-line-chart">
+            <ChartTitle name='Mood Line Chart'/>
+            <MoodLine data={data}/>
+          </Col>
+          <Col>
+          <ChartTitle name='Mood Pie'/>
+            <MoodPie data={myData}/>
+            <br></br>
+            <ChartTitle name='Medicine Intake'/>
+            <MedIntake data={data2}/>
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
