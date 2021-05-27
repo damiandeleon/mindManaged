@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import RxResults from "../components/RxResults/RxResults";
+import { Form } from 'react-bootstrap';
+import "./Medication.css";
 import API from "../utils/API";
 
 class Search extends Component {
@@ -46,14 +48,27 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <h1 className="text-center">Find your medication here</h1>
-                <SearchForm
-                    handleInputChange={this.handleInputChange}
-                    // handleFormSubmit={this.handleFormSubmit}
-                    prescriptions={this.state.prescriptions}
-                    search={this.state.search}
-                />
-                <RxResults />
+                <div class="container">
+                    <div class="row">
+                        <div class="column">
+                            <h1 className="text-center">Find your medication here</h1>
+                            <SearchForm
+                                handleInputChange={this.handleInputChange}
+                                // handleFormSubmit={this.handleFormSubmit}
+                                prescriptions={this.state.prescriptions}
+                                search={this.state.search}
+                            />
+                            <RxResults />
+                        </div>
+                        <div class="column">
+                            <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
+                            <Form.Group controlId="formBasicCheckbox">
+                                <Form.Check id="yes" type="checkbox" label="Yes" />
+                                <Form.Check id="no" type="checkbox" label="No" />
+                            </Form.Group>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
