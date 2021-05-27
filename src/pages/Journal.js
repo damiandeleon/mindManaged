@@ -27,42 +27,42 @@ const Journal = () => {
                     </div>
                     <br />
                     <br />
-                    <Form onSubmit={handleFormSubmit}>
+                    <Form >
                         <Card>
                             <h1>Select Today's Mood</h1>
                             <Form.Label>Select your mood level from the drop down menu
                                     <select>
                                     <option
                                         value={5}
-                                        onChange={handleInputChange}
+                                        // onChange={handleInputChange}
                                         name="moodlevel"
                                     >5 Very Happy
                                         </option>
 
                                     <option
                                         value={4}
-                                        onChange={handleInputChange}
+                                        // onChange={handleInputChange}
                                         name="moodlevel"
                                     >4 Somewhat Happy
                                         </option>
 
                                     <option
                                         value={3}
-                                        onChange={handleInputChange}
+                                        // onChange={handleInputChange}
                                         name="moodlevel"
                                     >3 Neutral
                                         </option>
 
                                     <option
                                         value={2}
-                                        onChange={handleInputChange}
+                                        // onChange={handleInputChange}
                                         name="moodlevel"
                                     >2 Somewhat Sad
                                         </option>
 
                                     <option
                                         value={1}
-                                        onChange={handleInputChange}
+                                        // onChange={handleInputChange}
                                         name="moodlevel"
                                     >1 Very Sad
                                         </option>
