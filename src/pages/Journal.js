@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useState } from "react";
 import { Form, Container, Row, Col, Card, Button } from "react-bootstrap";
-import API from "../utils/API";
+// import API from "../utils/API";
 
 
 const Journal = () => {
@@ -11,7 +12,55 @@ const Journal = () => {
 
     today = mm + '/' + dd + '/' + yyyy;
 
-   
+    const [JournalEntry, setJournalEntry] = useState({
+        text: "",
+    })
+    const [MoodLevelSelect, setMoodLevelSelect] = useState({
+        moodLevel: 5
+    })
+
+    // useEffect(() => {
+    //     loadEntries()
+    // }, [])
+
+    // const loadEntries = () => {
+    //     API.getEntries()
+    //         .then(res =>
+    //             setJournalEntry(res.data),
+    //         )
+    //         .catch(err => console.log(err));
+    // };
+
+    // const deleteEntry = (id) => {
+    //     API.deleteEntry(id)
+    //         .then(res => loadEntries())
+    //         .catch(err => console.log(err));
+    // };
+
+    const handleTextChange = (event) => {
+        setJournalEntry({ ...JournalEntry, text: event.target.value})
+        
+        // const { name, value } = event.target;
+
+    }
+
+    const handleMoodChange = (event) => {
+       
+        setMoodLevelSelect({ ...MoodLevelSelect, moodLevel: event.target.value})
+        
+        // const { name, value } = event.target;
+    }
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        console.log(JournalEntry.text, MoodLevelSelect.moodLevel)
+
+        // API.saveEntry({
+        //     moodLevel: event.target.value,
+        //     text: event.target.value,
+        //     date: Date.now
+        // })
+    }
 
     return (
         <Container fluid>
@@ -27,46 +76,22 @@ const Journal = () => {
                     </div>
                     <br />
                     <br />
-                    <Form >
+                    <Form onSubmit={handleFormSubmit} >
                         <Card>
                             <h1>Select Today's Mood</h1>
                             <Form.Label>Select your mood level from the drop down menu
-                                    <select>
-                                    <option
-                                        value={5}
-                                        // onChange={handleInputChange}
-                                        name="moodlevel"
-                                    >5 Very Happy
-                                        </option>
+                                    <Form.Control 
+                                        as="select"
+                                        onChange={handleMoodChange}
+                                        
+                                        >
+                                        <option value={5} >5 Very Happy</option>
+                                        <option value={4} >4 Somewhat Happy</option>
+                                        <option value={3} >3 Neutral</option>
+                                        <option value={2} >2 Somewhat Sad</option>
+                                        <option value={1} >1 Very Sad</option>
 
-                                    <option
-                                        value={4}
-                                        // onChange={handleInputChange}
-                                        name="moodlevel"
-                                    >4 Somewhat Happy
-                                        </option>
-
-                                    <option
-                                        value={3}
-                                        // onChange={handleInputChange}
-                                        name="moodlevel"
-                                    >3 Neutral
-                                        </option>
-
-                                    <option
-                                        value={2}
-                                        // onChange={handleInputChange}
-                                        name="moodlevel"
-                                    >2 Somewhat Sad
-                                        </option>
-
-                                    <option
-                                        value={1}
-                                        // onChange={handleInputChange}
-                                        name="moodlevel"
-                                    >1 Very Sad
-                                        </option>
-                                </select>
+                                    </Form.Control>
                             </Form.Label>
                         </Card>
 
@@ -76,11 +101,12 @@ const Journal = () => {
                                 as="textarea"
                                 rows={8}
                                 name="text"
-                                // onChange={handleInputChange} 
+                                
+                                onChange={handleTextChange} 
                             />
                         </Card>
                        
-                        <Button as="input" type="submit" value="Submit"/>
+                        <Button type="submit" value="Submit">Submit</Button>
                     </Form>
 
                     <br />
@@ -101,3 +127,4 @@ const Journal = () => {
 
 
 export default Journal;
+
