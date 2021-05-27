@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Link, Alert } from 'react-bootstrap';
+import { Card, Alert } from 'react-bootstrap';
 import "./RxResults.css";
 
 function RxResults(props) {

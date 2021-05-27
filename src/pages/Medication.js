@@ -15,22 +15,22 @@ class Search extends Component {
 
     componentDidMount() {
         API.getDrugInfo(this.state.search)
-            .then(res => this.setState({ prescriptions: res.data.products.brand_name, dosage: res.data.products.active_ingredients.strength }))
+            .then(res => this.setState({ prescriptions: res.data.products }))
             .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
         console.log('rx');
         const value = event.target.value;
-        const name = this.state.prescriptions;
+        const names = this.state.prescriptions;
         // const dose = this.state.dosage;
 
-        console.log(name);
+        console.log(names);
         // console.log(dose);
-        const searchResults = name.filter((name) => {
-            console.log(name);
+        const searchResults = names.filter((name) => {
+            console.log(name.brand_name);
             // toLowerCase
-            return name.toLowerCase().startsWith(this.state.search)
+            return name.brand_name.toLowerCase().startsWith(this.state.search)
         });
         console.log(searchResults);
 
@@ -48,9 +48,9 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <div class="container">
-                    <div class="row">
-                        <div class="column">
+                <div className="container">
+                    <div className="row">
+                        <div className="column">
                             <h1 className="text-center">Find your medication here</h1>
                             <SearchForm
                                 handleInputChange={this.handleInputChange}
@@ -60,7 +60,7 @@ class Search extends Component {
                             />
                             <RxResults />
                         </div>
-                        <div class="column">
+                        <div className="column">
                             <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
                             <Form.Group controlId="formBasicCheckbox">
                                 <Form.Check id="yes" type="checkbox" label="Yes" />
