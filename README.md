@@ -15,8 +15,8 @@
     <li>Express</li>
     <li>React</li>
     <li>Node.js</li>
-    <li>openFDA API</li>
-    <li>React-vis</li>
+    <li>openFDA API - https://open.fda.gov/apis/drug/</li>
+    <li>React-vis Charts- https://uber.github.io/react-vis/</li>
 </ul>
 
 <h1>Task Breakdown</h1>
