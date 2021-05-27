@@ -13,20 +13,22 @@ class Search extends Component {
 
     componentDidMount() {
         API.getDrugInfo(this.state.search)
-            .then(res => this.setState({ prescriptions: res.data.results }))
+            .then(res => this.setState({ prescriptions: res.data.products.brand_name, dosage: res.data.products.active_ingredients.strength }))
             .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
         console.log('rx');
         const value = event.target.value;
-        const results = this.state.prescriptions;
+        const name = this.state.prescriptions;
+        // const dose = this.state.dosage;
 
-        console.log(results);
-        const searchResults = results.filter((result) => {
-            console.log(result.name.first);
+        console.log(name);
+        // console.log(dose);
+        const searchResults = name.filter((name) => {
+            console.log(name);
             // toLowerCase
-            return result.name.first.toLowerCase().startsWith(this.state.search)
+            return name.toLowerCase().startsWith(this.state.search)
         });
         console.log(searchResults);
 
