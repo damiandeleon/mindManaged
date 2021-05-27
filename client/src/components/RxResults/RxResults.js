@@ -1,17 +1,20 @@
 import React from "react";
-import { Card, Button } from 'react-bootstrap';
+import { Card, Link, Alert } from 'react-bootstrap';
+import "./RxResults.css";
 
 function RxResults(props) {
     return (
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img variant="top" id="happy-pills" src="https://previews.123rf.com/images/lefttime/lefttime1707/lefttime170700008/82264314-green-red-and-blue-pills-smiling-different-emotion-cartoon-style-vector-illustration-on-white-backgr.jpg" />
             <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title>{props.prescriptions}</Card.Title>
                 <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
-    </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                    {props.dose}
+                </Card.Text>
+                <Alert>
+                    To find important information about potentially dangerous drug interactions, please visit the {' '}
+                    <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
+  </Alert>
             </Card.Body>
         </Card>
     )
