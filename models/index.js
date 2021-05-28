@@ -1,3 +1,3 @@
 module.exports = {
-    JournalEntry: require("./journalEntry"),
+    JournalEntry: require("./journalentry"),
   };
