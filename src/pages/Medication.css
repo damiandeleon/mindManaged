@@ -1,5 +1,7 @@
-.column {
-    padding: 20px
+#col-2 {
+    padding: 20px;
+    margin: 50px;
+    margin-top: 100px
 }
 
 #question {
