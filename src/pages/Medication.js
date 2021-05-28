@@ -14,31 +14,31 @@ class Search extends Component {
     };
 
     componentDidMount() {
-        API.getDrugInfo(this.state.search)
-            .then(res => this.setState({ prescriptions: res.data.products }))
-            .catch(err => console.log(err));
+        API.getDrugInfo("advil")
+            .then(res => this.setState({ prescriptions: res.data }))
+            .then(console.log(`this should be the products ${this.state.prescriptions}`)).catch(err => console.log(err));
     }
 
-    handleInputChange = event => {
-        console.log('rx');
-        const value = event.target.value;
-        const names = this.state.prescriptions;
-        // const dose = this.state.dosage;
+    // handleInputChange = event => {
+    //     console.log('rx');
+    //     const value = event.target.value;
+    //     const names = this.state.prescriptions;
+    //     // const dose = this.state.dosage;
 
-        console.log(names);
-        // console.log(dose);
-        const searchResults = names.filter((name) => {
-            console.log(name);
-            // toLowerCase
-            return name.brand_name.toLowerCase().startsWith(this.state.search)
-        });
-        console.log(searchResults);
+    //     console.log(names);
+    //     // console.log(dose);
+    //     const searchResults = names.filter((name) => {
+    //         console.log(name);
+    //         // toLowerCase
+    //         return name.brand_name.toLowerCase().startsWith(this.state.search)
+    //     });
+    //     console.log(searchResults);
 
-        this.setState({
-            search: value,
-            prescriptions: searchResults
-        });
-    };
+    //     this.setState({
+    //         search: value,
+    //         prescriptions: searchResults
+    //     });
+    // };
 
     // handleFormSubmit = event => {
     //     event.preventDefault();
@@ -53,7 +53,7 @@ class Search extends Component {
                         <div id="col-1" class="column">
                             <h1 className="text-center">Find your medication here</h1>
                             <SearchForm
-                                handleInputChange={this.handleInputChange}
+                                // handleInputChange={this.handleInputChange}
                                 // handleFormSubmit={this.handleFormSubmit}
                                 prescriptions={this.state.prescriptions}
                                 search={this.state.search}
