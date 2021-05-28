@@ -50,7 +50,7 @@ class Search extends Component {
             <div>
                 <div className="container">
                     <div className="row">
-                        <div className="column">
+                        <div id="col-1" className="column">
                             <h1 className="text-center">Find your medication here</h1>
                             <SearchForm
                                 handleInputChange={this.handleInputChange}
@@ -60,7 +60,8 @@ class Search extends Component {
                             />
                             <RxResults />
                         </div>
-                        <div className="column">
+                        <div id="col-2" className="column">
+                            <h2>Hold up!</h2>
                             <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
                             <Form.Group controlId="formBasicCheckbox">
                                 <Form.Check id="yes" type="checkbox" label="Yes" />
