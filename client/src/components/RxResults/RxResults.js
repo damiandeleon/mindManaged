@@ -3,20 +3,36 @@ import { Card, Alert } from 'react-bootstrap';
 import "./RxResults.css";
 
 function RxResults(props) {
+    const { prescriptions } = props;
+
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" id="happy-pills" src="https://previews.123rf.com/images/lefttime/lefttime1707/lefttime170700008/82264314-green-red-and-blue-pills-smiling-different-emotion-cartoon-style-vector-illustration-on-white-backgr.jpg" />
-            <Card.Body>
-                <Card.Title>{props.prescriptions}</Card.Title>
-                <Card.Text>
-                    {props.dose}
-                </Card.Text>
-                <Alert>
-                    To find important information about potentially dangerous drug interactions, please visit the {' '}
-                    <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
-  </Alert>
-            </Card.Body>
-        </Card>
+        <>
+            {
+                prescriptions.map((item, idx) => {
+                    console.log("prescription item\n\n\n", item)
+                    let dosage = 0;
+
+                    item.active_ingredients.forEach((ingredient) => {
+                        dosage += parseInt(ingredient.strength.split("M")[0])
+                    })
+                    return (
+                        <Card key={idx} style={{ width: '18rem' }}>
+                            <Card.Img variant="top" id="happy-pills" src="https://previews.123rf.com/images/lefttime/lefttime1707/lefttime170700008/82264314-green-red-and-blue-pills-smiling-different-emotion-cartoon-style-vector-illustration-on-white-backgr.jpg" />
+                            <Card.Body>
+                                <Card.Title>{item.brand_name}</Card.Title>
+                                <Card.Text>
+                                    {dosage}MG
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    )
+                })
+            }
+            <Alert>
+                To find important information about potentially dangerous drug interactions, please visit the {' '}
+                <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
+        </Alert>
+        </>
     )
 }
 

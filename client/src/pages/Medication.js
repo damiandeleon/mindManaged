@@ -14,36 +14,51 @@ class Search extends Component {
     };
 
     componentDidMount() {
-        API.getDrugInfo(this.state.search)
-            .then(res => this.setState({ prescriptions: res.data.products }))
+        API.getDrugInfo("aleve")
+            .then(res => {
+                let products = [];
+                res.data.results.forEach(item => {
+                    products = products.concat(item.products)
+                })
+                this.setState({ prescriptions: products })
+            })
+            .then(console.log(`the product searched is ${this.state.prescriptions}`))
             .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
         console.log('rx');
         const value = event.target.value;
-        const names = this.state.prescriptions;
+        // const names = this.state.prescriptions;
         // const dose = this.state.dosage;
 
-        console.log(names);
+        // console.log(names);
         // console.log(dose);
-        const searchResults = names.filter((name) => {
-            console.log(name.brand_name);
-            // toLowerCase
-            return name.brand_name.toLowerCase().startsWith(this.state.search)
-        });
-        console.log(searchResults);
+        // const searchResults = names.filter((name) => {
+        //     console.log(name.brand_name);
+        //     // toLowerCase
+        //     return name.brand_name.toLowerCase().startsWith(this.state.search)
+        // });
+        // console.log(searchResults);
 
         this.setState({
             search: value,
-            prescriptions: searchResults
+            // prescriptions: searchResults
         });
     };
 
-    // handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     this.getDrugInfo(this.state.search);
-    // };
+    handleFormSubmit = event => {
+        event.preventDefault();
+        API.getDrugInfo(this.state.search)
+            .then(res => {
+                let products = [];
+                res.data.results.forEach(item => {
+                    products = products.concat(item.products)
+                })
+                this.setState({ prescriptions: products })
+            })
+            .catch(err => console.log(err));;
+    };
 
     render() {
         return (
@@ -54,11 +69,13 @@ class Search extends Component {
                             <h1 className="text-center">Find your medication here</h1>
                             <SearchForm
                                 handleInputChange={this.handleInputChange}
-                                // handleFormSubmit={this.handleFormSubmit}
+                                handleFormSubmit={this.handleFormSubmit}
                                 prescriptions={this.state.prescriptions}
                                 search={this.state.search}
                             />
-                            <RxResults />
+                            <RxResults
+                                prescriptions={this.state.prescriptions}
+                            />
                         </div>
                         <div id="col-2" className="column">
                             <h2>Hold up!</h2>

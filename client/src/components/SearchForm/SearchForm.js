@@ -3,7 +3,9 @@ import React from "react";
 function SearchForm(props) {
     return (
         <div>
-            <form className="search-form">
+            <form className="search-form"
+                onSubmit={props.handleFormSubmit}
+            >
                 <label htmlFor="name">Search by brand name:</label>
                 <input
                     onChange={props.handleInputChange}
