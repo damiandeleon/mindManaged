@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../Container/Container"
+// import Container from "../Container/Container"
 import { Card, Alert } from 'react-bootstrap';
 import "./RxResults.css";
 
@@ -12,10 +12,10 @@ function RxResults(props) {
             {
                 prescriptions.map((item, idx) => {
                     console.log("prescription item\n\n\n", item)
-                    let dosage = 0;
+                    let dosage = '';
 
                     item.active_ingredients.forEach((ingredient) => {
-                        dosage += parseInt(ingredient.strength.split("M")[0])
+                        dosage = ingredient.strength
                     })
                     return (
                         <Card key={idx} style={{ width: '18rem' }}>
@@ -34,10 +34,6 @@ function RxResults(props) {
                     )
                 })
             }
-            {/* <Alert>
-                    To find important information about potentially dangerous drug interactions, please visit the {' '}
-                    <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
-        </Alert> */}
         </>
     )
 }
