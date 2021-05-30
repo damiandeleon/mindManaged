@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const journalEntrySchema = new Schema ({
-    moodlevel: { type: Number, required: true },
+    moodLevel: { type: String, required: true },
     text:  { type: String, required: false },
-    date: { type: Date, default: Date.now}
+    date: { type: String, required: true}
 });
 
 const JournalEntry = mongoose.model("JournalEntry", journalEntrySchema);
