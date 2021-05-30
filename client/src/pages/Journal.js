@@ -1,95 +1,93 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Container, Row, Col, Card, Button } from "react-bootstrap";
-// import API from "../utils/API";
+import { Link } from "react-router-dom";
+import API from "../utils/API";
 
 
 const Journal = () => {
     let today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
+    var DD = String(today.getDate()).padStart(2, '0');
+    var MM = String(today.getMonth() + 1).padStart(2, '0'); 
+    var YYYY = today.getFullYear();
+    var HH = today.getHours();
+    var mm = today.getMinutes();
+    var ampm = HH >= 12? 'pm' : 'am';
 
-    today = mm + '/' + dd + '/' + yyyy;
+    today = MM + '/' + DD + '/' + YYYY + ' - ' + HH + ':' + mm + ampm;
+
 
     const [JournalEntry, setJournalEntry] = useState({
         text: "",
+        moodLevel: 5,
+        date: today,
     })
-    const [MoodLevelSelect, setMoodLevelSelect] = useState({
-        moodLevel: 5
-    })
+    const [formObject, setFormObject] = useState({})
 
-    // useEffect(() => {
-    //     loadEntries()
-    // }, [])
+    useEffect(() => {
+        loadEntries()
+    }, [])
 
-    // const loadEntries = () => {
-    //     API.getEntries()
-    //         .then(res =>
-    //             setJournalEntry(res.data),
-    //         )
-    //         .catch(err => console.log(err));
-    // };
+    const loadEntries = () => {
+        API.getEntries()
+            .then(res =>
+                setJournalEntry(res.data),
+            )
+            .catch(err => console.log(err));
+    };
 
-    // const deleteEntry = (id) => {
-    //     API.deleteEntry(id)
-    //         .then(res => loadEntries())
-    //         .catch(err => console.log(err));
-    // };
+    const deleteEntry = (id) => {
+        API.deleteEntry(id)
+            .then(res => loadEntries())
+            .catch(err => console.log(err));
+    };
 
     const handleTextChange = (event) => {
-        setJournalEntry({ ...JournalEntry, text: event.target.value})
-        
-        // const { name, value } = event.target;
-
-    }
-
-    const handleMoodChange = (event) => {
-       
-        setMoodLevelSelect({ ...MoodLevelSelect, moodLevel: event.target.value})
-        
-        // const { name, value } = event.target;
-    }
+     
+        const { name, value } = event.target;
+        setFormObject({...formObject, [name]: value})
+      };
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        console.log(JournalEntry.text, MoodLevelSelect.moodLevel)
 
-        // API.saveEntry({
-        //     moodLevel: event.target.value,
-        //     text: event.target.value,
-        //     date: Date.now
-        // })
+        API.saveEntry({
+            moodLevel: formObject.moodLevel,
+            text: formObject.text,
+            date: today
+        })
+        
+        .then(res=> loadEntries())
+        .catch(err => console.log(err));
     }
 
     return (
         <Container fluid>
             <Row>
 
-                <Col md={9}>
-                    <div class="journalpageheader">
+                <Col md={7}>
+                    <div className="journalpageheader">
 
                         <h2 value={today}>{today}</h2>
-                        {/* <p>Entry Date</p>
-                                <input type="date" name="bdate" required />
-                                <i class="fas fa-calendar-alt"></i> */}
+
                     </div>
                     <br />
                     <br />
-                    <Form onSubmit={handleFormSubmit} >
+                    <Form onSubmit={handleFormSubmit}  >
                         <Card>
                             <h1>Select Today's Mood</h1>
                             <Form.Label>Select your mood level from the drop down menu
                                     <Form.Control 
                                         as="select"
-                                        onChange={handleMoodChange}
-                                        
+                                        onChange={handleTextChange}
+                                        name="moodLevel"
                                         >
-                                        <option value={5} >5 Very Happy</option>
-                                        <option value={4} >4 Somewhat Happy</option>
-                                        <option value={3} >3 Neutral</option>
-                                        <option value={2} >2 Somewhat Sad</option>
-                                        <option value={1} >1 Very Sad</option>
+                                        <option value={0}  >Select a Mood Level</option>
+                                        <option value={5}  >5 Very Happy</option>
+                                        <option value={4}  >4 Somewhat Happy</option>
+                                        <option value={3}  >3 Neutral</option>
+                                        <option value={2}  >2 Somewhat Sad</option>
+                                        <option value={1}  >1 Very Sad</option>
 
                                     </Form.Control>
                             </Form.Label>
@@ -106,18 +104,34 @@ const Journal = () => {
                             />
                         </Card>
                        
-                        <Button type="submit" value="Submit">Submit</Button>
+                        <Button
+                         type="submit" value="Submit">Submit</Button>
                     </Form>
 
                     <br />
 
 
                 </Col>
-
-
-
-
-
+                <Col md={5}>
+                    <h1> Journal Entries </h1>
+                    {JournalEntry.length ?  (
+                        <ol>
+                            {JournalEntry.map(entry => (
+                                <li key={entry._id}>
+                                    <Link to={("/entries/" + entry._id)}>
+                                        <strong>
+                                            {}
+                                            {entry.date}
+                                        </strong>
+                                    </Link>
+                                    <Button id="deleteButton" onClick={() => deleteEntry(entry._id)}>Delete Entry</Button>
+                                </li>
+                            ))}
+                        </ol>
+                    ) : (
+                        <h3>No Results to Display</h3>
+                    )}
+                </Col>
             </Row>
         </Container>
 
