@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import RxResults from "../components/RxResults/RxResults";
+import Container from "../components/Container/Container";
 import { Form } from 'react-bootstrap';
 import "./Medication.css";
 import API from "../utils/API";
@@ -63,7 +64,8 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <div className="container">
+                {/* <div className="container"> */}
+                <Container>
                     <div className="row">
                         <div id="col-1" className="column">
                             <h1 className="text-center">Find your medication here</h1>
@@ -86,7 +88,7 @@ class Search extends Component {
                             </Form.Group>
                         </div>
                     </div>
-                </div>
+                </Container>
             </div>
         );
     }
