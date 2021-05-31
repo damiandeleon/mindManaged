@@ -1,11 +1,38 @@
 import React from "react";
 import { Form, Button, Col } from 'react-bootstrap';
+import { GoogleLogin } from "react-google-login";
+import { useDispatch } from 'react-redux'
+import { AUTH } from "../../constants/actionTypes";
+import { useHistory } from 'react-router-dom'
 import "./Login.css"
 
 function Login() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  
+  const googleSuccess = async (res) => {    
+    console.log(res);
+    
+    const result = res?.profileObj // '?.' throws "undefined" instead of an error
+    const token = res?.tokenId;
+
+    try {
+      dispatch({ type: AUTH, data: { result, token } });
+
+      history.push('/')
+    }
+    catch (err) {
+      console.log(err)
+    }
+  };
+
+  const googleFailure = () => {
+    console.log("Google sign in was unsuccesful.")
+  };
+
   return (
     <div className="margin-top">
-      <Col fluid align="center">
+      <Col fluid="true" align="center">
         <Form className="form-style fadesample">
 
           {/* Email */}
@@ -27,6 +54,25 @@ function Login() {
           <Button variant="info" type="submit">
             Submit
           </Button>
+
+          <br></br>
+
+          <GoogleLogin 
+            clientId="740159137732-hsiiqe2up4nmdnuvh7420k91hel7pmu2.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <Button 
+                variant="outline-info" 
+                type="submit" 
+                onClick={renderProps.onClick} 
+                disabled={renderProps.disabled} 
+              >
+               Sign in with Google
+              </Button>
+            )}
+            onSuccess={googleSuccess}
+            onFailure={googleFailure}
+            cookiePolicy="single_host_origin"
+          />
 
         </Form>
       </Col>
