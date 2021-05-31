@@ -11,9 +11,7 @@ function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
   
-  const googleSuccess = async (res) => {    
-    console.log(res);
-    
+  const googleSuccess = async (res) => {       
     const result = res?.profileObj // '?.' throws "undefined" instead of an error
     const token = res?.tokenId;
 
