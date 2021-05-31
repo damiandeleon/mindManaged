@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { AUTH } from "../../constants/actionTypes";
 import { useHistory } from 'react-router-dom'
 import "./Login.css"
+require('dotenv').config()
 
 function Login() {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ function Login() {
           <br></br>
 
           <GoogleLogin 
-            clientId="740159137732-hsiiqe2up4nmdnuvh7420k91hel7pmu2.apps.googleusercontent.com"
+            clientId={process.env.GOOGLE_ID}
             render={(renderProps) => (
               <Button 
                 variant="outline-info" 
