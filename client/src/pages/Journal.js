@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Journal = () => {
@@ -13,6 +14,7 @@ const Journal = () => {
     var HH = today.getHours();
     var mm = today.getMinutes();
     var ampm = HH >= 12? 'pm' : 'am';
+    const { isAuthenticated } = useAuth0();
 
     today = MM + '/' + DD + '/' + YYYY + ' - ' + HH + ':' + mm + ampm;
 
@@ -62,7 +64,8 @@ const Journal = () => {
     }
 
     return (
-        <Container fluid>
+      isAuthenticated &&
+        <Container fluid="true">
             <Row>
 
                 <Col md={7}>

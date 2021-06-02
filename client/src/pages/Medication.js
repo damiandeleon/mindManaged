@@ -11,7 +11,7 @@ class Search extends Component {
         search: "",
         prescriptions: [],
         results: [],
-        error: ""
+        error: "",
     };
 
     componentDidMount() {

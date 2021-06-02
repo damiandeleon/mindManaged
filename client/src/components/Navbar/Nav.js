@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import React from "react";
+import { Link} from "react-router-dom";
 import { GiBrain } from 'react-icons/gi';
-import { useDispatch } from 'react-redux';
+import LoginBtn from '../LoginBtn/LoginBtn'
+import LogoutBtn from '../LogoutBtn/LogoutBtn'
 import "./Nav.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 function Navbar() {
-    const userProfile = JSON.parse(localStorage.getItem('profile'));
-    const [user, setUser] = useState(userProfile);
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const location = useLocation();
-
-    const logout = () => {
-      dispatch({ type: 'LOGOUT' })
-
-      history.push('/')
-      setUser(null)
-    }
-
-    console.log(user)
-
-    useEffect(() => {
-      // const token = user?.token;
-
-      setUser(JSON.parse(localStorage.getItem('profile')))
-    }, [location])
-
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link className="navbar-brand" to="/">
@@ -34,6 +14,11 @@ function Navbar() {
           </Link>
           <div>
             <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to="/charts" className={window.location.pathname === "/charts" ? "nav-link active" : "nav-link"}>
+                  Charts
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link to="/journal" className={window.location.pathname === "/journal" ? "nav-link active" : "nav-link"}>
                   Journal
@@ -45,19 +30,10 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/login" className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}>
-                Login
-                </Link>
+                <LoginBtn />
               </li>
               <li className="nav-item">
-                <Link to="/logout" className={window.location.pathname === "/logout" ? "nav-link active" : "nav-link"} onClick={logout}>
-                Log Out
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/signup" className={window.location.pathname === "/signup" ? "nav-link active" : "nav-link"}>
-                Sign Up
-                </Link>
+                <LogoutBtn />
               </li>
             </ul>
           </div>

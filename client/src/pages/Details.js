@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Col, Row, Container } from "react-bootstrap";
 import API from "../utils/API";
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Detail(props) {
     const [entry, setEntry] = useState({})
-  
+    const { isAuthenticated } = useAuth0();
     // When this component mounts, grab the entry with the _id of props.match.params.id
     // e.g. localhost:3000/entries/599dcb67f0f16317844583fc
     const {id} = useParams()
@@ -14,10 +15,11 @@ function Detail(props) {
       API.getEntry(id)
         .then(res => setEntry(res.data))
         .catch(err => console.log(err));
-    }, [])
+    }, [id])
 
     return (
-        <Container fluid>
+      isAuthenticated &&
+        <Container fluid='true'>
           <Row>
             <Col size="md-12">
                 <h1>
