@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Col, Row, Container, Jumbotron } from "react-bootstrap";
 import API from "../utils/API";
-import "./Details.css";
 
 function Detail(props) {
     const [entry, setEntry] = useState({})
