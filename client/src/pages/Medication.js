@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import RxResults from "../components/RxResults/RxResults";
 import Container from "../components/Container/Container";
-import { Form } from 'react-bootstrap';
+import { Card, Form } from 'react-bootstrap';
 import "./Medication.css";
 import API from "../utils/API";
 
@@ -15,8 +15,9 @@ class Search extends Component {
     };
 
     componentDidMount() {
-        API.getDrugInfo("aleve")
+        API.getDrugInfo(this.state.search)
             .then(res => {
+
                 let products = [];
                 res.data.results.forEach(item => {
                     products = products.concat(item.products)
@@ -25,26 +26,20 @@ class Search extends Component {
             })
             .then(console.log(`the product searched is ${this.state.prescriptions}`))
             .catch(err => console.log(err));
+
+        API.getSavedRx()
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => console.log(err));
     }
 
     handleInputChange = event => {
         console.log('rx');
         const value = event.target.value;
-        // const names = this.state.prescriptions;
-        // const dose = this.state.dosage;
-
-        // console.log(names);
-        // console.log(dose);
-        // const searchResults = names.filter((name) => {
-        //     console.log(name.brand_name);
-        //     // toLowerCase
-        //     return name.brand_name.toLowerCase().startsWith(this.state.search)
-        // });
-        // console.log(searchResults);
 
         this.setState({
             search: value,
-            // prescriptions: searchResults
         });
     };
 
@@ -58,13 +53,12 @@ class Search extends Component {
                 })
                 this.setState({ prescriptions: products })
             })
-            .catch(err => console.log(err));;
+            .catch(err => console.log(err));
     };
 
     render() {
         return (
             <div>
-                {/* <div className="container"> */}
                 <Container>
                     <div className="row">
                         <div id="col-1" className="column">
@@ -77,15 +71,18 @@ class Search extends Component {
                             />
                             <RxResults
                                 prescriptions={this.state.prescriptions}
+                            // saveButton={this.saveRx}
                             />
                         </div>
                         <div id="col-2" className="column">
-                            <h2>Hold up!</h2>
-                            <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
-                            <Form.Group controlId="formBasicCheckbox">
-                                <Form.Check id="yes" type="checkbox" label="Yes" />
-                                <Form.Check id="no" type="checkbox" label="No" />
-                            </Form.Group>
+                            <Card style={{ width: '18rem' }}>
+                                <h2>Hold up!</h2>
+                                <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
+                                <Form.Group controlId="formBasicCheckbox">
+                                    <Form.Check id="yes" type="checkbox" label="Yes" />
+                                    <Form.Check id="no" type="checkbox" label="No" />
+                                </Form.Group>
+                            </Card>
                         </div>
                     </div>
                 </Container>
