@@ -1,14 +1,32 @@
 import React from "react";
-// import Container from "../Container/Container"
-import { Card, Alert } from 'react-bootstrap';
+import { Card, Alert, Button } from 'react-bootstrap';
 import "./RxResults.css";
+import API from "../../utils/API"
 
 function RxResults(props) {
     const { prescriptions } = props;
 
+    const saveRx = (item) => {
+        console.log("button")
+        let dosage = '';
+
+        item.active_ingredients.forEach((ingredient) => {
+            dosage = ingredient.strength
+        })
+        const chosenRx = {
+            brand_name: item.brand_name,
+            dosage: dosage,
+            product_number: item.product_number
+        }
+        API.saveRx(chosenRx)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => console.log(err));
+    }
+
     return (
         <>
-
             {
                 prescriptions.map((item, idx) => {
                     console.log("prescription item\n\n\n", item)
@@ -23,9 +41,10 @@ function RxResults(props) {
                             <Card.Body>
                                 <Card.Title>{item.brand_name}</Card.Title>
                                 <Card.Text>
-                                    {dosage}MG
+                                    {dosage}
                                 </Card.Text>
                             </Card.Body>
+                            <Button onClick={() => saveRx(item)} id="save" variant="outline-success">Save Rx</Button>{' '}
                             <Alert>
                                 To find important information about potentially dangerous drug interactions, please visit the {' '}
                                 <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
