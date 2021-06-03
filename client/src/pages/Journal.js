@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Form, Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
-import { useAuth0 } from '@auth0/auth0-react';
 
 
 const Journal = () => {
@@ -11,18 +10,21 @@ const Journal = () => {
     var DD = String(today.getDate()).padStart(2, '0');
     var MM = String(today.getMonth() + 1).padStart(2, '0'); 
     var YYYY = today.getFullYear();
-    var HH = today.getHours();
-    var mm = today.getMinutes();
-    var ampm = HH >= 12? 'pm' : 'am';
-    const { isAuthenticated } = useAuth0();
-
-    today = MM + '/' + DD + '/' + YYYY + ' - ' + HH + ':' + mm + ampm;
+    var HHMT = today.getHours();
+    var HH = (today.getHours() + 24) % 12 || 12;
+    var mm = (today.getMinutes() < 10?'0':'') + today.getMinutes();
+    var ampm = HHMT >= 12? 'pm' : 'am';
+    
+    today = MM + '/' + DD + '/' + YYYY 
+    // + ' ' + HH + ':' + mm + ampm;
+    let time = HH + ':' + mm + ampm;
 
 
     const [JournalEntry, setJournalEntry] = useState({
         text: "",
         moodLevel: 5,
         date: today,
+        time: time,
     })
     const [formObject, setFormObject] = useState({})
 
@@ -56,7 +58,8 @@ const Journal = () => {
         API.saveEntry({
             moodLevel: formObject.moodLevel,
             text: formObject.text,
-            date: today
+            date: today,
+            time: time
         })
         
         .then(res=> loadEntries())
@@ -64,14 +67,14 @@ const Journal = () => {
     }
 
     return (
-      isAuthenticated &&
-        <Container fluid="true">
+        <Container fluid>
             <Row>
 
                 <Col md={7}>
                     <div className="journalpageheader">
 
-                        <h2 value={today}>{today}</h2>
+                        <h2 value={today}>Today is: {today}</h2>
+                        <h3 value={time}>Time is: {time}</h3>
 
                     </div>
                     <br />
@@ -79,7 +82,7 @@ const Journal = () => {
                     <Form onSubmit={handleFormSubmit}  >
                         <Card>
                             <h1>Select Today's Mood</h1>
-                            <Form.Label>Select your mood level from the drop down menu
+                            <Form.Label>
                                     <Form.Control 
                                         as="select"
                                         onChange={handleTextChange}
@@ -122,10 +125,7 @@ const Journal = () => {
                             {JournalEntry.map(entry => (
                                 <li key={entry._id}>
                                     <Link to={("/entries/" + entry._id)}>
-                                        <strong>
-                                            {}
-                                            {entry.date}
-                                        </strong>
+                                        <p> Entry Date: {entry.date + " " + entry.time} - Mood Level {entry.moodLevel}</p>
                                     </Link>
                                     <Button id="deleteButton" onClick={() => deleteEntry(entry._id)}>Delete Entry</Button>
                                 </li>
