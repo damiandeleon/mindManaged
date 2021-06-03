@@ -29,6 +29,7 @@ export default {
     },
 
     saveEntry: function (entryData) {
+        console.log(entryData)
         return axios.post("/api/entries", entryData)
     }
 };
