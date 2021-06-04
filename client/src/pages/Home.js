@@ -1,5 +1,5 @@
 import React from 'react'
-import { Jumbotron, Card, Row, Col, Container, ListGroup, CardDeck } from 'react-bootstrap';
+import { Jumbotron, Card, Row, Col, Container, CardDeck } from 'react-bootstrap';
 import LoginBtn from '../components/LoginBtn/LoginBtn';
 import './Home.css'
 
@@ -8,12 +8,12 @@ const Home = () => {
 
   return (
     <div>
-      <Jumbotron id="jumbo-bg">
-        <div className="text-center">
-          <h1 style={{fontSize: '75px'}} variant="info" id="jumbo-title">Mind Managed</h1>
-          <h4>A place to manage your mind</h4>
+      <Jumbotron>
+        <div className="text-center" id="fade-in">
+          <h1 style={{fontSize: '60px'}} variant="info">Mind Managed</h1>
+          <h5>A place to manage your mind</h5>
           <br></br>
-          <LoginBtn name="Get Started" variant="info" style={{height: '50px'}} size="lg" />
+          <LoginBtn name="Get Started" variant="info" size="lg" />
         </div>
       </Jumbotron>
 
@@ -40,7 +40,7 @@ const Home = () => {
 
             <Col sm={12} md={2} lg={4}>
               <Card style={{ width: '350px', border: 'none', height: '720px' }} bg="info" id="fade-in2">
-                <Card.Img style={{height: '348px'}} variant="top" src="https://st2.depositphotos.com/3114403/11583/v/600/depositphotos_115831468-stock-illustration-cartoon-brain-concept-doodle-style.jpg"/>
+                <Card.Img style={{height: '350px'}} variant="top" src="https://st2.depositphotos.com/3114403/11583/v/600/depositphotos_115831468-stock-illustration-cartoon-brain-concept-doodle-style.jpg"/>
                 <Card.Body>
                   <Card.Title className="text-center" id="card-title">
                     Mental State Updates
@@ -58,7 +58,7 @@ const Home = () => {
 
             <Col sm={12} md={2} lg={4}>
               <Card style={{ width: '350px', border: 'none', height: '720px' }} bg="info" id="fade-in3">
-                <Card.Img variant="top" src="https://thumbs.dreamstime.com/b/simple-bar-chart-graph-diagram-icon-cartoon-vector-flat-design-green-background-long-shadow-207449005.jpg"/>
+                <Card.Img style={{height: '350px'}} variant="top" src="https://thumbs.dreamstime.com/b/simple-bar-chart-graph-diagram-icon-cartoon-vector-flat-design-green-background-long-shadow-207449005.jpg"/>
                 <Card.Body>
                   <Card.Title className="text-center" id="card-title">
                     Personalized Graphs

@@ -4,8 +4,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 const LoginBtn = (props) => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
-  
+  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
   return (
     !isAuthenticated &&
     <Button 

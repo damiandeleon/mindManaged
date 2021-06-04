@@ -3,7 +3,7 @@
 } */
 #card-list {
   font-size: 18px;
-  color: whitesmoke;
+  color: white;
 }
 
 #card-title {
@@ -31,12 +31,6 @@
 #fade-in3 {
   animation-name: fadeIn3;
   animation-duration: 4000ms;
-  animation-iteration-count: 1;
-}
-
-#jumbo-title {
-  animation-name: jumboFade;
-  animation-duration: 2500ms;
   animation-iteration-count: 1;
 }
 

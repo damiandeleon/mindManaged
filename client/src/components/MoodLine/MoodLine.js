@@ -6,7 +6,7 @@ import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis,  YAxi
 function MoodLine(props) {
     return (
       <Row className="d-flex justify-content-center">
-        <XYPlot height={800} width={1000}>
+        <XYPlot height={600} width={800}>
           <VerticalGridLines />
           <HorizontalGridLines />
           <XAxis />
