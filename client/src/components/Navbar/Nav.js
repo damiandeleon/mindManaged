@@ -3,10 +3,13 @@ import { Link} from "react-router-dom";
 import { GiBrain } from 'react-icons/gi';
 import LoginBtn from '../LoginBtn/LoginBtn'
 import LogoutBtn from '../LogoutBtn/LogoutBtn'
+import { useAuth0 } from '@auth0/auth0-react';
 import "./Nav.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 function Navbar() {
+  const { user } = useAuth0();
+  console.log(user)
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <Link className="navbar-brand" to="/">
@@ -30,10 +33,10 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <LoginBtn />
+                <LoginBtn name="Login" variant="outline-info"/>
               </li>
               <li className="nav-item">
-                <LogoutBtn />
+                <LogoutBtn name="Logout" variant="outline-info"/>
               </li>
             </ul>
           </div>
