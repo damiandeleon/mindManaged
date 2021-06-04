@@ -13,7 +13,7 @@ const Home = () => {
           <h1 style={{fontSize: '75px'}} variant="info" id="jumbo-title">Mind Managed</h1>
           <h4>A place to manage your mind</h4>
           <br></br>
-          <LoginBtn name="Get Started!" variant="info" style={{height: '50px'}}/>
+          <LoginBtn name="Get Started" variant="info" style={{height: '50px'}} size="lg" />
         </div>
       </Jumbotron>
 
