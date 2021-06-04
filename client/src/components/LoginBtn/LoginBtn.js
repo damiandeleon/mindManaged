@@ -10,7 +10,8 @@ const LoginBtn = (props) => {
     !isAuthenticated &&
     <Button 
       variant={props.variant} 
-      onClick={loginWithRedirect}>
+      onClick={loginWithRedirect}
+      size={props.size}>
         {props.name}
     </Button>
   )
