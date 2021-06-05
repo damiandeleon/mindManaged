@@ -6,7 +6,7 @@ import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis,  YAxi
 function MedIntake(props) {
     return (
       <Row className="d-flex justify-content-center">
-      <XYPlot height={400} width={650}>
+      <XYPlot height={325} width={500}>
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis />

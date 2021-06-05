@@ -8,8 +8,8 @@ const Login = () => {
   return (
     !isAuthenticated &&
     <div className='login-component fluid text-center' style={{'marginTop': '10%'}}>
-      <h1 style={{fontSize: '100px'}}>Restricted Access</h1>
-      <h4 style={{fontSize: '35px'}}>Please log in to continue</h4>
+      <h1 style={{fontSize: '50px'}}>Restricted Access</h1>
+      <h4 style={{fontSize: '25px'}}>Please log in to continue</h4>
       <br></br>
       <LoginBtn name="Login" variant="info" size="lg" />
     </div>

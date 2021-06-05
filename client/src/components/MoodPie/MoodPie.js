@@ -9,8 +9,8 @@ function MoodPie(props) {
       {/* Mood Pie Chart */}
       <RadialChart
         data={props.data}
-        width={400}
-        height={400} 
+        width={350}
+        height={350} 
       />
     </Row>
     )

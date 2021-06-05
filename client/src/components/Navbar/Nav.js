@@ -11,10 +11,11 @@ function Navbar() {
   const { user } = useAuth0();
   console.log(user)
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-default navbar-expand-lg navbar-light bg-light" expand="lg">
           <Link className="navbar-brand" to="/">
             Mind<GiBrain className="brain-style"/>Managed
           </Link>
+
           <div>
             <ul className="navbar-nav">
               <li className="nav-item">
