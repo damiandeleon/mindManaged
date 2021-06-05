@@ -8,12 +8,12 @@ export default {
     },
 
     saveRx: function (prescription) {
-        console.log("save rx");
-        return axios.post("/api/drugs", prescription);
+        console.log("save rx", prescription);
+        return axios.post("/api/medication", prescription);
     },
 
     getSavedRx: function () {
-        return axios.get("/api/drugs");
+        return axios.get("/api/medication");
     },
 
     getEntries: function () {

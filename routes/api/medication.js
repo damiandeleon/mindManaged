@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const rxController = require("../../controllers/prescriptionController");
 
-// Matches with "/api/drugs"
+// Matches with "/api/medication"
 router
     .route("/")
     .get(rxController.findAll)
     .post(rxController.create);
 
 
-// Matches with "/api/drugs/:id"
+// Matches with "/api/medication/:id"
 router
     .route("/:id")
     .delete(rxController.remove);
