@@ -25,7 +25,8 @@ function App() {
             </Route>
 
             <Route exact path="/Journal">
-              {isAuthenticated ? <Journal />: <Login />}
+              { <Journal /> }
+              {/* {isAuthenticated ? <Journal />: <Login />} */}
             </Route>
             
             <Route path="/entries/:id">
