@@ -8,7 +8,7 @@ export default {
     },
 
     saveRx: function (prescription) {
-        console.log("save rx");
+        console.log("save rx", prescription);
         return axios.post("/api/medication", prescription);
     },
 
