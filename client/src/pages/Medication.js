@@ -28,7 +28,7 @@ const Medication = () => {
                 res.data.results.forEach(item => {
                     products = products.concat(item.products)
                 })
-                this.setState({ prescriptions: products })
+                setState({ prescriptions: products })
             })
             .then(console.log(`the product searched is ${state.prescriptions}`))
             .catch(err => console.log(err));
@@ -41,32 +41,12 @@ const Medication = () => {
             .catch(err => console.log(err));
     }, [])
 
-    // const componentDidMount = () => {
-    //     API.getDrugInfo(this.state.search)
-    //         .then(res => {
-
-    //             let products = [];
-    //             res.data.results.forEach(item => {
-    //                 products = products.concat(item.products)
-    //             })
-    //             this.setState({ prescriptions: products })
-    //         })
-    //         .then(console.log(`the product searched is ${this.state.prescriptions}`))
-    //         .catch(err => console.log(err));
-
-    //     API.getSavedRx()
-    //         .then(res => {
-    //             console.log(res)
-    //             setSavedRx(res.data)
-    //         })
-    //         .catch(err => console.log(err));
-    // }
-
     const handleInputChange = event => {
         console.log('rx');
         const value = event.target.value;
 
-        this.setState({
+        setState({
+            ...state,
             search: value,
         });
     };
@@ -79,7 +59,10 @@ const Medication = () => {
                 res.data.results.forEach(item => {
                     products = products.concat(item.products)
                 })
-                this.setState({ prescriptions: products })
+                setState({
+                    ...state,
+                    prescriptions: products
+                })
             })
             .catch(err => console.log(err));
     };
@@ -92,8 +75,8 @@ const Medication = () => {
                     <div id="col-1" className="column">
                         <h1 className="text-center">Find your medication here</h1>
                         <SearchForm
-                            onChange={handleInputChange}
-                            onSubmit={handleFormSubmit}
+                            handleInputChange={handleInputChange}
+                            handleFormSubmit={handleFormSubmit}
                             prescriptions={state.prescriptions}
                             search={state.search}
                         />
@@ -101,13 +84,13 @@ const Medication = () => {
                             prescriptions={state.prescriptions}
                         // saveButton={this.saveRx}
                         />
-                        <Card>
+                        {/* <Card>
                             <ListGroup variant="flush">
                                 <ListGroup.Item>Cras justo odio</ListGroup.Item>
                                 <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
                                 <ListGroup.Item>Morbi leo risus</ListGroup.Item>
                                 <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-                            </ListGroup></Card>
+                            </ListGroup></Card> */}
                     </div>
                     <div id="col-2" className="column">
                         <Card style={{ width: '18rem' }}>
