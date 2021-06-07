@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Container, Row, Col, Card, CardDeck, Button, Jumbotron, Dropdown, DropdownButton, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
-import './Journal.css'
+import './Journal.css';
 
 
 const Journal = () => {
@@ -65,7 +65,11 @@ const Journal = () => {
 
             .then(res => loadEntries())
             .catch(err => console.log(err));
+         
     }
+
+
+
 
     return (
         <Container fluid>
@@ -158,8 +162,6 @@ const Journal = () => {
                 </Col>
             </Row>
         </Container>
-
-
     )
 };
 
