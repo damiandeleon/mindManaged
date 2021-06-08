@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./components/Navbar/Nav";
+import Navigator from "./components/Navbar/Nav";
 import Wrapper from "./components/Wrapper/Wrapper";
 import Login from "./pages/Login";
 import Charts from "./pages/Charts";
@@ -15,8 +15,8 @@ function App() {
   const { isAuthenticated } = useAuth0();
   return (
     <Router>
-      <div>
-          <Navbar />
+      <div className="App">
+          <Navigator />
           <Wrapper>
             <Route exact path="/" component={Home} />
 
@@ -25,15 +25,16 @@ function App() {
             </Route>
 
             <Route exact path="/Journal">
-              { <Journal /> }
-              {/* {isAuthenticated ? <Journal />: <Login />} */}
+              {isAuthenticated ? <Journal />: <Login />}
             </Route>
             
             <Route path="/entries/:id">
               {isAuthenticated ? <Details />: <Login />}
             </Route>
 
-            <Route exact path="/Medication" component={Medication} />
+            <Route path="/Medication">
+              {isAuthenticated ? <Medication />: <Login />}
+            </Route>
           </Wrapper>
       </div>
     </Router>
