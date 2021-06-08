@@ -12,6 +12,10 @@ export default {
         return axios.post("/api/medication", prescription);
     },
 
+    deleteRx: function (id) {
+        return axios.delete("/api/medication/" + id);
+    },
+
     getSavedRx: function () {
         return axios.get("/api/medication");
     },
