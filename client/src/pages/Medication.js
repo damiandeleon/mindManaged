@@ -3,9 +3,9 @@ import SearchForm from "../components/SearchForm/SearchForm";
 import RxResults from "../components/RxResults/RxResults";
 import Container from "../components/Container/Container";
 import { Card, Form, ListGroup } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import "./Medication.css";
 import API from "../utils/API";
-// import savedRxCard from "../components/SavedRx/SavedRx";
 
 const Medication = () => {
     const [state, setState] = useState({
@@ -82,25 +82,34 @@ const Medication = () => {
                         />
                         <RxResults
                             prescriptions={state.prescriptions}
-                        // saveButton={this.saveRx}
                         />
-                        {/* <Card>
-                            <ListGroup variant="flush">
-                                <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                                <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                                <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-                            </ListGroup></Card> */}
                     </div>
                     <div id="col-2" className="column">
-                        <Card style={{ width: '18rem' }}>
+                        <Card.Body id="fade-in3" style={{ textAlign: 'center' }}>
                             <h2>Hold up!</h2>
                             <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
                             <Form.Group controlId="formBasicCheckbox">
                                 <Form.Check id="yes" type="checkbox" label="Yes" />
                                 <Form.Check id="no" type="checkbox" label="No" />
                             </Form.Group>
-                        </Card>
+                        </Card.Body>
+                        <Card.Body id="fade-in3" style={{ textAlign: 'center', background: 'lightblue' }}>
+                            <h1> Your prescriptions </h1>
+                            {SavedRx.length ? (
+                                <ListGroup variant="flush">
+                                    {SavedRx.map(rx => (
+
+                                        <ListGroup.Item key={rx._id}>
+                                            <p style={{ fontSize: 'smallest' }} > Name: {rx.brand_name}</p>
+                                            <p style={{ fontSize: 'smallest' }} >  Dosage: {rx.dosage} </p>
+                                            {/* <Button size="sm" id="deleteButton" onClick={() => deleteEntry(rx._id)}>Delete</Button> */}
+                                        </ListGroup.Item>
+                                    ))}
+                                </ListGroup>
+                            ) : (
+                                    <h3>No meds yet</h3>
+                                )}
+                        </Card.Body>
                     </div>
                 </div>
             </Container>
