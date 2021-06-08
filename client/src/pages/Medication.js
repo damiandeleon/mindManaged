@@ -19,6 +19,23 @@ const Medication = () => {
         product_number: 0
     })
 
+    const [buttonState, setButtonState] = useState({
+        isYes: false,
+        isNo: false
+    })
+
+    const toggleChangeYes = () => {
+        setButtonState(prevState => ({
+            isYes: !prevState.isYes,
+        }));
+    }
+
+    const toggleChangeNo = () => {
+        setButtonState(prevState => ({
+            isNo: !prevState.isNo,
+        }));
+    }
+
     useEffect(() => {
         API.getDrugInfo(state.search)
             .then(res => {
@@ -99,8 +116,10 @@ const Medication = () => {
                             <h2>Hold up!</h2>
                             <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
                             <Form.Group controlId="formBasicCheckbox">
-                                <Form.Check id="yes" type="checkbox" label="Yes" />
-                                <Form.Check id="no" type="checkbox" label="No" />
+                                <Form.Check id="yes" type="checkbox" checked={buttonState.isYes}
+                                    onChange={toggleChangeYes} label="Yes" />
+                                <Form.Check id="no" type="checkbox" checked={buttonState.isNo}
+                                    onChange={toggleChangeNo} label="No" />
                             </Form.Group>
                         </Card.Body>
                         <Card.Body id="fade-in2" style={{ textAlign: 'center', background: 'lightblue' }}>
