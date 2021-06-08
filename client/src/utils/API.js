@@ -35,5 +35,13 @@ export default {
     saveEntry: function (entryData) {
         console.log(entryData)
         return axios.post("/api/entries", entryData)
+    },
+
+    saveUser: function (userData) {
+      axios.post("/api/user", userData)
+    },
+
+    getUsers: function () {
+      return axios.get("/api/user")
     }
 };

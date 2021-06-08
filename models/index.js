@@ -1,4 +1,5 @@
 module.exports = {
   JournalEntry: require("./journalentry"),
-  SavedRx: require("./prescriptions")
+  SavedRx: require("./prescriptions"),
+  User: require("./user")
 };

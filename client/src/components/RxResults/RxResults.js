@@ -48,7 +48,7 @@ function RxResults(props) {
                             <Alert>
                                 To find important information about potentially dangerous drug interactions, please visit the {' '}
                                 <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
-        </Alert>
+                            </Alert>
                         </Card>
                     )
                 })
