@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import RxResults from "../components/RxResults/RxResults";
 import Container from "../components/Container/Container";
-import { Card, Form, ListGroup } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Card, Form, ListGroup, Button } from 'react-bootstrap';
 import "./Medication.css";
 import API from "../utils/API";
 
@@ -33,13 +32,24 @@ const Medication = () => {
             .then(console.log(`the product searched is ${state.prescriptions}`))
             .catch(err => console.log(err));
 
+        getSavedRx()
+
+    }, [])
+
+    const getSavedRx = () => {
         API.getSavedRx()
             .then(res => {
                 console.log(res)
                 setSavedRx(res.data)
             })
             .catch(err => console.log(err));
-    }, [])
+    }
+
+    const deleteRx = (id) => {
+        API.deleteRx(id)
+            .then(res => getSavedRx())
+            .catch(err => console.log(err));
+    };
 
     const handleInputChange = event => {
         console.log('rx');
@@ -85,7 +95,7 @@ const Medication = () => {
                         />
                     </div>
                     <div id="col-2" className="column">
-                        <Card.Body id="fade-in3" style={{ textAlign: 'center' }}>
+                        <Card.Body id="fade-in2" style={{ textAlign: 'center' }}>
                             <h2>Hold up!</h2>
                             <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
                             <Form.Group controlId="formBasicCheckbox">
@@ -93,16 +103,16 @@ const Medication = () => {
                                 <Form.Check id="no" type="checkbox" label="No" />
                             </Form.Group>
                         </Card.Body>
-                        <Card.Body id="fade-in3" style={{ textAlign: 'center', background: 'lightblue' }}>
+                        <Card.Body id="fade-in2" style={{ textAlign: 'center', background: 'lightblue' }}>
                             <h1> Your prescriptions </h1>
                             {SavedRx.length ? (
                                 <ListGroup variant="flush">
                                     {SavedRx.map(rx => (
 
                                         <ListGroup.Item key={rx._id}>
-                                            <p style={{ fontSize: 'smallest' }} > Name: {rx.brand_name}</p>
-                                            <p style={{ fontSize: 'smallest' }} >  Dosage: {rx.dosage} </p>
-                                            {/* <Button size="sm" id="deleteButton" onClick={() => deleteEntry(rx._id)}>Delete</Button> */}
+                                            <p style={{ fontSize: 'medium' }} > Name: {rx.brand_name}</p>
+                                            <p style={{ fontSize: 'medium' }} >  Dosage: {rx.dosage} </p>
+                                            <Button size="small" variant="outline-danger" onClick={() => deleteRx(rx._id)}>Delete</Button>
                                         </ListGroup.Item>
                                     ))}
                                 </ListGroup>
