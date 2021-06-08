@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const journalEntrySchema = new Schema ({
+    // This will be used to pull the current user ID and tie the journal entry/mood level to them
+    user: { type: Schema.Types.ObjectId },
     moodLevel: { type: String, required: true },
     text:  { type: String, required: false },
     date: { type: String, required: true},
