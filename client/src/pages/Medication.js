@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import RxResults from "../components/RxResults/RxResults";
 import Container from "../components/Container/Container";
-import { Card, Form, ListGroup, Button } from 'react-bootstrap';
+import { Card, Form, ListGroup, Button, Alert } from 'react-bootstrap';
 import "./Medication.css";
 import API from "../utils/API";
 
@@ -18,6 +18,39 @@ const Medication = () => {
         dosage: "",
         product_number: 0
     })
+
+    const [buttonState, setButtonState] = useState({
+        isYes: false,
+        isNo: false
+    })
+
+    const toggleChangeYes = () => {
+        setButtonState(prevState => ({
+            isYes: !prevState.isYes,
+        }));
+    }
+
+    const toggleChangeNo = () => {
+        setButtonState(prevState => ({
+            isNo: !prevState.isNo,
+        }));
+    }
+
+    // const saveIntake = (e) => {
+    //     e.preventDefault();
+    //     let intake = [];
+    //     var key;
+    //     for (key in buttonState) {
+    //         if (buttonState[key] === true) {
+    //             intake.push(key);
+    //         }
+    //     }
+    //     API.saveIntake(intake)
+    //         .then(res => {
+    //             console.log(res)
+    //         })
+    //         .catch(err => console.log(err));
+    // }
 
     useEffect(() => {
         API.getDrugInfo(state.search)
@@ -99,9 +132,16 @@ const Medication = () => {
                             <h2>Hold up!</h2>
                             <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
                             <Form.Group controlId="formBasicCheckbox">
-                                <Form.Check id="yes" type="checkbox" label="Yes" />
-                                <Form.Check id="no" type="checkbox" label="No" />
+                                <Form.Check id="yes" type="checkbox" checked={buttonState.isYes}
+                                    onChange={toggleChangeYes} label="Yes" />
+                                <Form.Check id="no" type="checkbox" checked={buttonState.isNo}
+                                    onChange={toggleChangeNo} label="No" />
                             </Form.Group>
+                            <Alert id="alert">
+                                To find important information about potentially dangerous drug interactions, please visit the {' '}
+                                <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
+                            </Alert>
+                            {/* <Button size="small" variant="outline-primary" onClick={() => saveIntake(key)}>Save</Button> */}
                         </Card.Body>
                         <Card.Body id="fade-in2" style={{ textAlign: 'center', background: 'lightblue' }}>
                             <h1> Your prescriptions </h1>
