@@ -72,16 +72,12 @@ const Journal = () => {
 
 
     return (
-        <Container fluid>
-
-
-
-            <Jumbotron id="jumbo-bg2">
+        <Container>
+            <Jumbotron id="jumbo-bg2" style={{ borderRadius: '20px' }}>
                 <div className="text-center">
-                    <h1 style={{ fontSize: '75px' }} variant="info" id="jumbo-title">Your Journal</h1>
-                    <h4>A sanctuary for your thoughts</h4>
+                    <h1 style={{ fontSize: '75px', textShadow: '4px 4px rgba(50,50,50, 0.8)'  }} variant="info" id="jumbo-title">Journal</h1>
+                    <h5>- A sanctuary for your thoughts -</h5>
                     <h6 >{today} </h6>
-                    <br></br>
                 </div>
             </Jumbotron>
             <Row>
@@ -89,13 +85,13 @@ const Journal = () => {
                 <Col md={9} >
                 {/* <Card.Img id="CardImg" fluid src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_482405534_309336.jpg"/> */}
 
-                    <Form style={{background: 'lightcyan'}} onSubmit={handleFormSubmit}  >
+                    <Form style={{ backgroundColor: 'rgba(165,200,160)', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgb(210, 210, 210), 0 6px 20px 0 black' }} onSubmit={handleFormSubmit}  >
                         
                         <CardDeck id="fade-in">
                             
                             <Card.Body style={{ textAlign: 'center' }}>
                                 
-                                <h1>Select Today's Mood</h1>
+                                <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Select Today's Mood</h1>
                                 
                                 <Form.Label>
 
@@ -119,7 +115,7 @@ const Journal = () => {
 
                         <CardDeck id="fade-in2" variant='top'>
                             <Card.Body style={{  textAlign: 'center' }}>
-                                <h1 >Today's Journal Entry</h1>
+                                <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Today's Journal Entry</h1>
                                 <Form.Control
                                     as="textarea"
                                     rows={8}
@@ -140,18 +136,18 @@ const Journal = () => {
 
                 </Col>
                 <Col md={3}>
-                    <Card.Body id="fade-in3" style={{  textAlign: 'center', background: 'lightgrey'}}>
-                        <h1> Journal Entries </h1>
+                    <Card.Body id="fade-in3" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160)', borderRadius: '10px', color: 'black', boxShadow: '0 4px 8px 0 rgb(210, 210, 210), 0 6px 20px 0 black' }}>
+                        <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Journal Entries</h1>
                         {JournalEntry.length ? (
                             <ListGroup>
                                 {JournalEntry.map(entry => (
 
                                     <ListGroup.Item key={entry._id}>
                                         <Link to={("/entries/" + entry._id)}>
-                                            <p style={{ fontSize: 'smallest' }} > Entry Date: {entry.date + " " + entry.time}</p>
-                                            <p style={{ fontSize: 'smallest' }} >  Mood Level {entry.moodLevel} </p>
+                                            <p style={{ fontSize: 'smallest', color: 'black' }} > Entry Date: {entry.date + " - " + entry.time}</p>
+                                            <p style={{ fontSize: 'smallest', color: 'black' }} >  Mood Level {entry.moodLevel} </p>
                                         </Link>
-                                        <Button size="sm" id="deleteButton" onClick={() => deleteEntry(entry._id)}>Delete</Button>
+                                        <Button size="sm" id="deleteButton" variant="danger" onClick={() => deleteEntry(entry._id)}>Delete</Button>
                                     </ListGroup.Item>
                                 ))}
                             </ListGroup>
