@@ -34,17 +34,17 @@ function Navigator() {
     return (
       <Navbar collapseOnSelect expand="sm" variant="light" bg="light">
       <Navbar.Brand href="/">Mind Managed</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/charts" className={window.location.pathname === "/charts" ? "nav-link active" : "nav-link"}>Charts</Nav.Link>
-            <Nav.Link href="/journal" className={window.location.pathname === "/journal" ? "nav-link active" : "nav-link"}>Journal</Nav.Link>
+            <Nav.Link href="/Journal" className={window.location.pathname === "/Journal" ? "nav-link active" : "nav-link"}>Journal</Nav.Link>
             <Nav.Link href="/Medication" className={window.location.pathname === "/Medication" ? "nav-link active" : "nav-link"}>Medication</Nav.Link>
             <li className="nav-item">
               <LoginBtn name="Login" variant="outline-success"/>
             </li>
             <li className="nav-item">
-              <LogoutBtn name="Logout" variant="outline-success"/>
+              <LogoutBtn name="Logout"/>
             </li>
           </Nav>
         </Navbar.Collapse>
