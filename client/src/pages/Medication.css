@@ -1,14 +1,26 @@
-#col-2 {
+#col-1, #col-2 {
     padding: 20px;
-    margin: 50px;
-    margin-top: 100px
+    margin: 10px;
+    margin-top: 50px
+}
+
+#col-1 {
+    background: url("https://images.theconversation.com/files/256057/original/file-20190129-108364-17hlc1x.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip.jpg");
 }
 
 h2, #question, #yes, #no {
     padding: 15px
 }
 
+#alert {
+    width: 350px;
+}
+
 #question {
     font-size: 20px;
     font-weight: bold;
+}
+
+.card {
+    margin-bottom: 10px;
 }

@@ -12,6 +12,20 @@ export default {
         return axios.post("/api/medication", prescription);
     },
 
+    deleteRx: function (id) {
+        return axios.delete("/api/medication/" + id);
+    },
+
+    saveNo: function (intake) {
+        console.log("intake", intake);
+        return axios.post("/api/intake", intake);
+    },
+
+    getIntake: function (intake) {
+        console.log("get intake", intake);
+        return axios.get("/api/intake", intake);
+    },
+
     getSavedRx: function () {
         return axios.get("/api/medication");
     },
@@ -31,5 +45,13 @@ export default {
     saveEntry: function (entryData) {
         console.log(entryData)
         return axios.post("/api/entries", entryData)
+    },
+
+    saveUser: function (userData) {
+        axios.post("/api/user", userData)
+    },
+
+    getUsers: function () {
+        return axios.get("/api/user")
     }
 };
