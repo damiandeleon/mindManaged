@@ -1,12 +1,20 @@
 body {
   background-image: url("https://images.unsplash.com/photo-1535242208474-9a2793260ca8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80");
-  background-repeat: repeat-x;
+  background-repeat: repeat;
 }
 
 #jumbo-bg {
   color: white;
-  background: rgba(102, 119, 105, 0.5);
+  /* background: rgba(255, 255, 255, 0.95); */
+  background: rgba(114, 134, 117, 0.7);
+  box-shadow: 0 4px 8px 0 rgb(56, 78, 56), 0 6px 20px 0 black;
 }
+
+#jumbo-title {
+  font-size: 75px;
+}
+
+
 #card-list {
   font-size: 18px;
   color: black;
@@ -61,4 +69,10 @@ body {
 	0% {opacity: 0; top: 50%} 
   50% {top: 0}
 	100% {opacity: 1;}
-	}  
+	}
+  
+  @media only screen and (max-width: 600px) {
+    #jumbo-title {
+      font-size: 50px;
+    }
+  }
