@@ -38,7 +38,7 @@ const Medication = () => {
         }));
     }
 
-    const toggleChangeNo = (e) => {
+    const toggleChangeNo = () => {
         setButtonState(prevState => ({
             isNo: !prevState.isNo,
         }));
@@ -183,8 +183,26 @@ const Medication = () => {
                         </Card.Body>
                     </div>
                 </div>
+                <div class="row">
+                    <Card.Body style={{ background: "white" }}>
+                        <h1>Oops!</h1>
+                        <p>Skipped or forgot medication on these days:</p>
+                        {buttonState.length ? (
+                            <ListGroup variant="flush">
+                                {buttonState.map(item => (
+                                    // console.log(item.dates)
+                                    < ListGroup.Item >
+                                        <p style={{ fontSize: 'medium' }} > Missed days: {item.dates}</p>
+                                    </ListGroup.Item>
+                                ))}
+                            </ListGroup>
+                        ) : (
+                                <h3>No skipped days yet (good job!)</h3>
+                            )}
+                    </Card.Body>
+                </div>
             </Container>
-        </div>
+        </div >
     );
     // }
 }
