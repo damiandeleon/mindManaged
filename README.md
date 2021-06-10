@@ -4,7 +4,7 @@
 <p>Mind Managed tracks a user's daily mood, prescription use, and journal entry so that the user can keep a detailed record to show their doctor.</p>
 
 <h1>Links</h1>
-<a href="https://mind-managed.herokuapp.com/" target="_blank">Deployed Link</a>
+<a href="https://obscure-beyond-60909.herokuapp.com/" target="_blank">Deployed Link</a>
 
 <h1>Tech Stack</h1>
 <ul>

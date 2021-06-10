@@ -1,6 +1,7 @@
 #jumbo-bg2 {
-      background-image: url("https://www.incimages.com/uploaded_files/image/1920x1080/getty_482405534_309336.jpg");
-      offset-inline-start: 300px;
+  color: white;
+  background: rgba(114, 134, 117, 0.7);
+  box-shadow: 0 4px 8px 0 rgb(56, 78, 56), 0 6px 20px 0 black
 }
 
 #CardImg {
@@ -25,20 +26,20 @@
   
 #fade-in {
     animation-name: fadeIn;
-    animation-duration: 6000ms;
+    animation-duration: 2000ms;
     animation-iteration-count: 1;
 }
   
 #fade-in2 {
     animation-name: fadeIn2;
-    animation-duration: 6000ms;
+    animation-duration: 3000ms;
     animation-iteration-count: 1;
 
 }
   
 #fade-in3 {
     animation-name: fadeIn3;
-    animation-duration: 6000ms;
+    animation-duration: 4000ms;
     animation-iteration-count: 1;
 }
   
