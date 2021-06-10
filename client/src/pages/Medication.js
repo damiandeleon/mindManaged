@@ -7,13 +7,6 @@ import "./Medication.css";
 import API from "../utils/API";
 
 const Medication = () => {
-    let today = new Date();
-    var DD = String(today.getDate()).padStart(2, '0');
-    var MM = String(today.getMonth() + 1).padStart(2, '0');
-    var YYYY = today.getFullYear();
-
-    today = MM + '/' + DD + '/' + YYYY
-
     const [state, setState] = useState({
         search: "",
         prescriptions: [],
@@ -28,8 +21,7 @@ const Medication = () => {
 
     const [buttonState, setButtonState] = useState({
         isYes: false,
-        isNo: false,
-        dates: []
+        isNo: false
     })
 
     const toggleChangeYes = () => {
@@ -38,38 +30,27 @@ const Medication = () => {
         }));
     }
 
-    const toggleChangeNo = (e) => {
+    const toggleChangeNo = () => {
         setButtonState(prevState => ({
             isNo: !prevState.isNo,
         }));
-
-        let intake = [];
-        let skippedDay = today;
-
-        if (buttonState.isNo) {
-            console.log("made it")
-            intake.push(skippedDay);
-            var missedMeds = intake;
-        }
-        const Dates = {
-            dates: missedMeds
-        }
-        API.saveNo(Dates)
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => console.log(err));
-
     }
 
-    const getIntake = () => {
-        API.getIntake()
-            .then(res => {
-                console.log(res)
-                setButtonState(res.data)
-            })
-            .catch(err => console.log(err));
-    }
+    // const saveIntake = (e) => {
+    //     e.preventDefault();
+    //     let intake = [];
+    //     var key;
+    //     for (key in buttonState) {
+    //         if (buttonState[key] === true) {
+    //             intake.push(key);
+    //         }
+    //     }
+    //     API.saveIntake(intake)
+    //         .then(res => {
+    //             console.log(res)
+    //         })
+    //         .catch(err => console.log(err));
+    // }
 
     useEffect(() => {
         API.getDrugInfo(state.search)
@@ -85,8 +66,6 @@ const Medication = () => {
             .catch(err => console.log(err));
 
         getSavedRx()
-
-        getIntake()
 
     }, [])
 
@@ -149,20 +128,20 @@ const Medication = () => {
                         />
                     </div>
                     <div id="col-2" className="column">
-                        <Card.Body className="card" id="fade-in2" style={{ textAlign: 'center' }}>
+                        <Card.Body id="fade-in2" style={{ textAlign: 'center' }}>
                             <h2>Hold up!</h2>
                             <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
                             <Form.Group controlId="formBasicCheckbox">
                                 <Form.Check id="yes" type="checkbox" checked={buttonState.isYes}
                                     onChange={toggleChangeYes} label="Yes" />
-                                <Form.Check id="no" type="checkbox" checked={buttonState.isNo} onChange={toggleChangeNo}
-                                    label="No" />
+                                <Form.Check id="no" type="checkbox" checked={buttonState.isNo}
+                                    onChange={toggleChangeNo} label="No" />
                             </Form.Group>
                             <Alert id="alert">
                                 To find important information about potentially dangerous drug interactions, please visit the {' '}
                                 <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
                             </Alert>
-                            <Button size="small" variant="outline-primary" onClick={toggleChangeNo}>Save</Button>
+                            {/* <Button size="small" variant="outline-primary" onClick={() => saveIntake(key)}>Save</Button> */}
                         </Card.Body>
                         <Card.Body id="fade-in2" style={{ textAlign: 'center', background: 'lightblue' }}>
                             <h1> Your prescriptions </h1>
