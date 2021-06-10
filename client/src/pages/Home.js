@@ -22,8 +22,8 @@ const Home = () => {
         <Row className="d-flex justify-content-center">
           <CardDeck>
             <Col sm={12} md={6} lg={4} >
-              <Card style={{ width: '350px', border: 'none', height: '720px', marginLeft: 'auto', marginRight: 'auto', marginTop: '5px', boxShadow: '0 4px 8px 0 darkgrey, 0 6px 20px 0 black' }} bg="light" id="fade-in">
-                <Card.Img style={{height: '350px'}} variant="top" src="https://images.unsplash.com/photo-1555633514-abcee6ab92e1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"/>
+              <Card style={{ width: '350px', height: '720px', marginLeft: 'auto', marginRight: 'auto', marginTop: '5px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px' }} bg="light" id="fade-in">
+                <Card.Img style={{height: '350px', borderRadius: '10px'}} variant="top" src="https://images.unsplash.com/photo-1555633514-abcee6ab92e1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"/>
                 <Card.Body>
                   <Card.Title className="text-center" id="card-title">
                     Track Your Medication
@@ -38,8 +38,8 @@ const Home = () => {
             </Col>
 
             <Col sm={12} md={6} lg={4}>
-              <Card style={{ width: '350px', border: 'none', height: '720px', marginLeft: 'auto', marginRight: 'auto', marginTop: '5px', boxShadow: '0 4px 8px 0 darkgrey, 0 6px 20px 0 black' }} bg="light" id="fade-in2">
-                <Card.Img style={{height: '350px'}} variant="top" src="https://st2.depositphotos.com/3114403/11583/v/600/depositphotos_115831468-stock-illustration-cartoon-brain-concept-doodle-style.jpg"/>
+              <Card style={{ width: '350px', border: 'none', height: '720px', marginLeft: 'auto', marginRight: 'auto', marginTop: '5px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px' }} bg="light" id="fade-in2">
+                <Card.Img style={{height: '350px', borderRadius: '10px'}} variant="top" src="https://st2.depositphotos.com/3114403/11583/v/600/depositphotos_115831468-stock-illustration-cartoon-brain-concept-doodle-style.jpg"/>
                 <Card.Body>
                   <Card.Title className="text-center" id="card-title">
                     Mental State Updates
@@ -54,8 +54,8 @@ const Home = () => {
             </Col>
 
             <Col sm={12} md={6} lg={4}>
-              <Card style={{ width: '350px', border: 'none', height: '720px', marginLeft: 'auto', marginRight: 'auto', marginTop: '5px', boxShadow: '0 4px 8px 0 darkgrey, 0 6px 20px 0 black' }} bg="light" id="fade-in3">
-                <Card.Img style={{height: '350px'}} variant="top" src="https://thumbs.dreamstime.com/b/simple-bar-chart-graph-diagram-icon-cartoon-vector-flat-design-green-background-long-shadow-207449005.jpg"/>
+              <Card style={{ width: '350px', border: 'none', height: '720px', marginLeft: 'auto', marginRight: 'auto', marginTop: '5px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px' }} bg="light" id="fade-in3">
+                <Card.Img style={{height: '350px', borderRadius: '10px'}} variant="top" src="https://thumbs.dreamstime.com/b/simple-bar-chart-graph-diagram-icon-cartoon-vector-flat-design-green-background-long-shadow-207449005.jpg"/>
                 <Card.Body>
                   <Card.Title className="text-center" id="card-title">
                     Personalized Graphs
