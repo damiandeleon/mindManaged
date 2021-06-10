@@ -1,20 +1,44 @@
-import React from "react";
+import { React } from "react";
 import { Row } from 'react-bootstrap';
-import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis,  YAxis} from 'react-vis';
+// import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis,  YAxis} from 'react-vis';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 
 function MoodLine(props) {
-    return (
-      <Row className="d-flex justify-content-center">
-        <XYPlot height={600} width={800} xType="ordinal">
-          <VerticalGridLines />
-          <HorizontalGridLines />
-          <XAxis />
-          <YAxis />
-          <LineSeries data={props.data} />
-        </XYPlot>
-      </Row>
-    )
+  const { info } = props; 
+    const data1 = info.map(stuff => {
+      let cleanedInfo = 
+      {
+        name: stuff.date,
+        MoodLevel: stuff.moodLevel 
+      }
+      return cleanedInfo
+    })
+
+  return (
+    <ResponsiveContainer width={"100%"} height={500}>
+      <LineChart
+        width={500}
+        height={300}
+        data={data1}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        {/* <Line type="monotone" dataKey="" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
+        <Line type="monotone" dataKey="MoodLevel" stroke="#82ca9d" />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+
 }
 
 export default MoodLine;
