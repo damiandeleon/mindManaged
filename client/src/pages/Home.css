@@ -34,18 +34,21 @@ body {
   animation-name: fadeIn;
   animation-duration: 2000ms;
   animation-iteration-count: 1;
+  transition: ease;
 }
 
 #fade-in2 {
   animation-name: fadeIn2;
   animation-duration: 3000ms;
   animation-iteration-count: 1;
+  transition: ease;
 }
 
 #fade-in3 {
   animation-name: fadeIn3;
   animation-duration: 4000ms;
   animation-iteration-count: 1;
+  transition: ease;
 }
 
 @keyframes jumboFade { 

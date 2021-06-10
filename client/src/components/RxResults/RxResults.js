@@ -36,8 +36,8 @@ function RxResults(props) {
                         dosage = ingredient.strength
                     })
                     return (
-                        <Card key={idx} style={{ width: '18rem' }}>
-                            <Card.Img variant="top" id="happy-pills" src="https://previews.123rf.com/images/lefttime/lefttime1707/lefttime170700008/82264314-green-red-and-blue-pills-smiling-different-emotion-cartoon-style-vector-illustration-on-white-backgr.jpg" />
+                        <Card key={idx} style={{ width: '18rem' , borderRadius: '10px', padding: '5px 10px 5px 10px', textAlign: 'center', margin: '10px auto'}}>
+                            <Card.Img variant="top" id="happy-pills" src="https://previews.123rf.com/images/lefttime/lefttime1707/lefttime170700008/82264314-green-red-and-blue-pills-smiling-different-emotion-cartoon-style-vector-illustration-on-white-backgr.jpg" style={{alignSelf: 'center'}}/>
                             <Card.Body>
                                 <Card.Title>{item.brand_name}</Card.Title>
                                 <Card.Text>

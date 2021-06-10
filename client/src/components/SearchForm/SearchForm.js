@@ -2,11 +2,10 @@ import React from "react";
 
 const SearchForm = (props) => {
     return (
-        <div>
+        <div id="fade-in2">
             <form className="search-form"
                 onSubmit={props.handleFormSubmit}
             >
-                <label htmlFor="name">Search by brand name:</label>
                 <input
                     onChange={props.handleInputChange}
                     value={props.search}

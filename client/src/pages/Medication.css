@@ -1,19 +1,15 @@
-#col-1, #col-2 {
-    padding: 20px;
-    margin: 10px;
-    margin-top: 50px
-}
-
-#col-1 {
-    background: url("https://images.theconversation.com/files/256057/original/file-20190129-108364-17hlc1x.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip.jpg");
-}
-
-h2, #question, #yes, #no {
-    padding: 15px
+.search-img {
+  background: url("https://images.theconversation.com/files/256057/original/file-20190129-108364-17hlc1x.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&fit=clip.jpg");
+  height: 100%;
+  padding: 10px 10px;
 }
 
 #alert {
-    width: 350px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    padding-top: -20px;
 }
 
 #question {

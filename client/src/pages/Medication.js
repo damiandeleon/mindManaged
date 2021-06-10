@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import RxResults from "../components/RxResults/RxResults";
 import Container from "../components/Container/Container";
-import { Card, Form, ListGroup, Button, Alert } from 'react-bootstrap';
+import { Card, Form, ListGroup, Button, Alert, Row, Col, Jumbotron } from 'react-bootstrap';
 import "./Medication.css";
 import API from "../utils/API";
 
@@ -67,7 +67,7 @@ const Medication = () => {
 
         getSavedRx()
 
-    }, [])
+    }, [state.prescriptions, state.search])
 
     const getSavedRx = () => {
         API.getSavedRx()
@@ -112,58 +112,79 @@ const Medication = () => {
 
     // render() {
     return (
-        <div>
-            <Container>
-                <div className="row">
-                    <div id="col-1" className="column">
-                        <h1 className="text-center">Find your medication here</h1>
-                        <SearchForm
-                            handleInputChange={handleInputChange}
-                            handleFormSubmit={handleFormSubmit}
-                            prescriptions={state.prescriptions}
-                            search={state.search}
-                        />
-                        <RxResults
-                            prescriptions={state.prescriptions}
-                        />
-                    </div>
-                    <div id="col-2" className="column">
-                        <Card.Body id="fade-in2" style={{ textAlign: 'center' }}>
-                            <h2>Hold up!</h2>
-                            <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
-                            <Form.Group controlId="formBasicCheckbox">
-                                <Form.Check id="yes" type="checkbox" checked={buttonState.isYes}
-                                    onChange={toggleChangeYes} label="Yes" />
-                                <Form.Check id="no" type="checkbox" checked={buttonState.isNo}
-                                    onChange={toggleChangeNo} label="No" />
-                            </Form.Group>
-                            <Alert id="alert">
-                                To find important information about potentially dangerous drug interactions, please visit the {' '}
-                                <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
-                            </Alert>
-                            {/* <Button size="small" variant="outline-primary" onClick={() => saveIntake(key)}>Save</Button> */}
-                        </Card.Body>
-                        <Card.Body id="fade-in2" style={{ textAlign: 'center', background: 'lightblue' }}>
-                            <h1> Your prescriptions </h1>
-                            {SavedRx.length ? (
-                                <ListGroup variant="flush">
-                                    {SavedRx.map(rx => (
+        <Container>
+          <Jumbotron id="jumbo-bg" className="text-center jumbotron" style={{borderRadius: '20px'}}>
+            <div id="fade-in">
+              <h1 id="jumbo-title" style={{textShadow: '4px 4px rgba(50,50,50, 0.8)'}}>Medication</h1>
+              <h5>- Find and track your medication -</h5>
+              <br></br>
+            </div>
+          </Jumbotron>
 
-                                        <ListGroup.Item key={rx._id}>
-                                            <p style={{ fontSize: 'medium' }} > Name: {rx.brand_name}</p>
-                                            <p style={{ fontSize: 'medium' }} >  Dosage: {rx.dosage} </p>
-                                            <Button size="small" variant="outline-danger" onClick={() => deleteRx(rx._id)}>Delete</Button>
-                                        </ListGroup.Item>
-                                    ))}
-                                </ListGroup>
-                            ) : (
-                                    <h3>No meds yet</h3>
-                                )}
-                        </Card.Body>
-                    </div>
-                </div>
+            <Container style={{marginTop: '3%'}}>
+              <Row>
+                <Col id="fade-in2" className="search-img" style={{ borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', marginBottom: '3%' }} sm={12} md={12} lg={8}>
+                  <Row>                       
+                    <Container className="text-center" style={{textAlign: 'center'}}>
+                      <h2>Search by Brand Name:</h2>
+                      <SearchForm
+                        handleInputChange={handleInputChange}
+                        handleFormSubmit={handleFormSubmit}
+                        prescriptions={state.prescriptions}
+                        search={state.search}
+                      />
+                    </Container>
+                  </Row>
+                  <Row>                       
+                    <RxResults
+                      prescriptions={state.prescriptions}
+                    />                    
+                  </Row>
+                </Col>
+                <Col sm={12} md={12} lg={4} className="text-center">
+                  <Card.Body id="fade-in2" style={{ backgroundColor: 'rgba(255,255,255,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: '50%' }}>
+                    <h2>Hold up!</h2>
+                    <hr></hr>
+                    <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
+                      <Form.Group controlId="formBasicCheckbox">
+                          <Form.Check id="yes" type="checkbox" checked={buttonState.isYes}
+                              onChange={toggleChangeYes} label="Yes" />
+                          <Form.Check id="no" type="checkbox" checked={buttonState.isNo}
+                              onChange={toggleChangeNo} label="No" />
+                      </Form.Group>
+
+                    <hr></hr>
+
+                    <Alert id="alert">
+                      <p>To find important information about potentially dangerous drug interactions, please visit the {' '}
+                        <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
+                      </p>
+                    </Alert>
+                    </Card.Body>
+
+                    <br></br>
+
+                    <Card.Body id="fade-in2" style={{ background: 'rgba(188,226,237,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: '50%', overflow: 'auto' }}>
+                      <h1> Your prescriptions </h1>
+                      <hr></hr>
+                      {SavedRx.length ? (
+                        <ListGroup variant="flush">
+                          {SavedRx.map(rx => (
+                            <ListGroup.Item key={rx._id}>
+                                <p style={{ fontSize: 'medium' }} > Name: {rx.brand_name}</p>
+                                <p style={{ fontSize: 'medium' }} >  Dosage: {rx.dosage} </p>
+                                <Button size="small" variant="outline-danger" onClick={() => deleteRx(rx._id)}>Delete</Button>
+                            </ListGroup.Item>
+                          ))}
+                            </ListGroup>
+                          ) : (
+                                <h3>No meds yet</h3>
+                              )}
+                      </Card.Body>
+                  </Col>
+              </Row>
             </Container>
-        </div>
+        </Container>
     );
     // }
 }
