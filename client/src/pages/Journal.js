@@ -85,9 +85,9 @@ const Journal = () => {
                 <Col md={9} >
                 {/* <Card.Img id="CardImg" fluid src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_482405534_309336.jpg"/> */}
 
-                    <Form style={{ backgroundColor: 'rgba(165,200,160)', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgb(210, 210, 210), 0 6px 20px 0 black' }} onSubmit={handleFormSubmit}  >
+                    <Form style={{ backgroundColor: 'rgba(165,200,160)', borderRadius: '10px', boxShadow: '0 4px 8px 0 rgb(210, 210, 210), 0 6px 20px 0 black' }} onSubmit={handleFormSubmit} id="fade-in">
                         
-                        <CardDeck id="fade-in">
+                        <CardDeck>
                             
                             <Card.Body style={{ textAlign: 'center' }}>
                                 
@@ -113,7 +113,7 @@ const Journal = () => {
                             </Card.Body>
                         </CardDeck>
 
-                        <CardDeck id="fade-in2" variant='top'>
+                        <CardDeck variant='top'>
                             <Card.Body style={{  textAlign: 'center' }}>
                                 <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Today's Journal Entry</h1>
                                 <Form.Control
@@ -136,7 +136,7 @@ const Journal = () => {
 
                 </Col>
                 <Col md={3}>
-                    <Card.Body id="fade-in3" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160)', borderRadius: '10px', color: 'black', boxShadow: '0 4px 8px 0 rgb(210, 210, 210), 0 6px 20px 0 black' }}>
+                    <Card.Body id="fade-in2" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160)', borderRadius: '10px', color: 'black', boxShadow: '0 4px 8px 0 rgb(210, 210, 210), 0 6px 20px 0 black' }}>
                         <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Journal Entries</h1>
                         {JournalEntry.length ? (
                             <ListGroup>
