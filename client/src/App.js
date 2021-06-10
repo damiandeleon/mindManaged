@@ -15,7 +15,7 @@ function App() {
   const { isAuthenticated } = useAuth0();
   return (
     <Router>
-      <div className="App">
+      <div>
           <Navigator />
           <Wrapper>
             <Route exact path="/" component={Home} />
