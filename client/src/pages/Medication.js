@@ -7,6 +7,13 @@ import "./Medication.css";
 import API from "../utils/API";
 
 const Medication = () => {
+    let today = new Date();
+    var DD = String(today.getDate()).padStart(2, '0');
+    var MM = String(today.getMonth() + 1).padStart(2, '0');
+    var YYYY = today.getFullYear();
+
+    today = MM + '/' + DD + '/' + YYYY
+
     const [state, setState] = useState({
         search: "",
         prescriptions: [],
