@@ -53,16 +53,23 @@ function Charts() {
       <Container fluid>
         <Row style={{ width: "100%", textAlign: 'center', background: 'lightgrey'}}>
           <Col className="mood-line-chart">
-            <ChartTitle name='Mood Line Chart' />
+            
             { DataCoords.length ? (
+                <ChartTitle name='Mood Line Chart' />,
                 <MoodLine info={DataCoords}/>
-              ): (<h3>No Results to Display</h3>)
+              ): (<h3>No Results to Display.</h3>)
             }
           </Col>
-          {/* <Col>
-            <ChartTitle name='Mood Pie' />
-            <MoodPie data={myData} />
-          </Col> */}
+        </Row>
+        <Row style={{ width: "100%", textAlign: 'center', background: 'lightgrey'}}>
+        <Col>
+           
+            { DataCoords.length ? (
+               <ChartTitle name='Mood Pie' />,
+                <MoodPie data={DataCoords}/>
+              ): (<h3>Please begin by making a journal entry in the Journal tab</h3>)
+            }
+          </Col>
         </Row>
       </Container>
     </div>
