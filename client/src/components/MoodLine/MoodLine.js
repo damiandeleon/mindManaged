@@ -23,8 +23,8 @@ function MoodLine(props) {
         data={data1}
         margin={{
           top: 5,
-          right: 30,
-          left: 20,
+          right: 50,
+          left: 0,
           bottom: 5,
         }}
       >
@@ -34,7 +34,7 @@ function MoodLine(props) {
         <Tooltip />
         <Legend />
         {/* <Line type="monotone" dataKey="" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
-        <Line type="monotone" dataKey="MoodLevel" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="MoodLevel" stroke="#82ca9d" activeDot={{ r: 8 }}/>
       </LineChart>
     </ResponsiveContainer>
   );
