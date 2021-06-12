@@ -4,7 +4,7 @@ import { Form, Container, Row, Col, Card, CardDeck, Button, Jumbotron, ListGroup
 import { Link } from "react-router-dom";
 import API from "../utils/API";
 import './Journal.css';
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Journal = () => {
     let today = new Date();
@@ -15,6 +15,7 @@ const Journal = () => {
     var HH = (today.getHours() + 24) % 12 || 12;
     var mm = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
     var ampm = HHMT >= 12 ? 'pm' : 'am';
+    const {user} = useAuth0()
 
     today = MM + '/' + DD + '/' + YYYY
     // + ' ' + HH + ':' + mm + ampm;
@@ -26,20 +27,30 @@ const Journal = () => {
         moodLevel: 5,
         date: today,
         time: time,
+        user_id: "",
     })
     const [formObject, setFormObject] = useState({})
 
     useEffect(() => {
-        loadEntries()
+        loadEntries(user.sub)
     }, [])
 
-    const loadEntries = () => {
-        API.getEntries()
+    const loadEntries = (id) => {
+        API.getEntries(id)
             .then(res =>
                 setJournalEntry(res.data),
-            )
+                )
             .catch(err => console.log(err));
     };
+
+    const findUser = (id) => {
+        API.getUsers(id)
+            .then()
+          .then(() => {loadEntries(id)            
+          })
+      }
+
+
 
     const deleteEntry = (id) => {
         API.deleteEntry(id)
@@ -60,12 +71,13 @@ const Journal = () => {
             moodLevel: formObject.moodLevel,
             text: formObject.text,
             date: today,
-            time: time
+            time: time,
+            user_id: user.sub, //assigns the loggged in user to the post
         })
 
             .then(res => loadEntries())
             .catch(err => console.log(err));
-         
+
     }
 
 

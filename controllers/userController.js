@@ -2,8 +2,9 @@ const db = require("../models");
 
 module.exports = {
     findById: function(req, res) {
+      console.log(req.params.id)
         db.User
-        .findById(req.params.id)
+        .findOne({user_id: req.params.id})
         .then(userData => res.json(userData))
         .catch(err => res.status(422).json(err));
     },
