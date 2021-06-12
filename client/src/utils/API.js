@@ -20,6 +20,16 @@ export default {
         return axios.get("/api/medication");
     },
 
+    saveNo: function (intake) {
+        console.log("intake", intake);
+        return axios.post("/api/intake", intake);
+    },
+
+    getIntake: function (intake) {
+        console.log("get intake", intake);
+        return axios.get("/api/intake", intake);
+    },
+
     getEntries: function () {
         return axios.get("/api/entries");
     },
@@ -38,10 +48,10 @@ export default {
     },
 
     saveUser: function (userData) {
-      axios.post("/api/user", userData)
+        axios.post("/api/user", userData)
     },
 
     getUsers: function () {
-      return axios.get("/api/user")
+        return axios.get("/api/user")
     }
 };
