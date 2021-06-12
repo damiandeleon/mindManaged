@@ -55,8 +55,11 @@ function Charts() {
           <Col className="mood-line-chart">
             
             { DataCoords.length ? (
+              <div>
                 <ChartTitle name='Mood Line Chart' />,
                 <MoodLine info={DataCoords}/>
+              </div>
+
               ): (<h3>No Results to Display.</h3>)
             }
           </Col>
@@ -65,8 +68,11 @@ function Charts() {
         <Col>
            
             { DataCoords.length ? (
+              <div>
                <ChartTitle name='Mood Pie' />,
                 <MoodPie data={DataCoords}/>
+              </div>
+
               ): (<h3>Please begin by making a journal entry in the Journal tab</h3>)
             }
           </Col>
