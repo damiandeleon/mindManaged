@@ -197,6 +197,7 @@ const Medication = () => {
                                     <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
                       </p>
                             </Alert>
+                            <Button size="small" variant="outline-primary" onClick={toggleChangeNo}>Save</Button>
                         </Card.Body>
 
                         <br></br>
