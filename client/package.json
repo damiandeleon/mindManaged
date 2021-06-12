@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",
+  "homepage": "https://obscure-beyond-60909.herokuapp.com/",
   "dependencies": {
     "@auth0/auth0-react": "^1.5.0",
     "@material-ui/core": "^4.11.4",
