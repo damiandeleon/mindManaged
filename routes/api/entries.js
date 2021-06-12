@@ -16,4 +16,8 @@ router
     .put(journalController.update)
     .delete(journalController.remove);
 
+router
+    .route("/user/:user_id")
+    .get(journalController.findByUserId)
+
 module.exports = router;

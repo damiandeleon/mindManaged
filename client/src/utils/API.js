@@ -30,8 +30,8 @@ export default {
         return axios.get("/api/intake", intake);
     },
 
-    getEntries: function () {
-        return axios.get("/api/entries");
+    getEntries: function (user_id) {
+        return axios.get("/api/entries/user/" + user_id);
     },
 
     getEntry: function (id) {
@@ -43,7 +43,6 @@ export default {
     },
 
     saveEntry: function (entryData) {
-        console.log(entryData)
         return axios.post("/api/entries", entryData)
     },
 
@@ -51,7 +50,8 @@ export default {
         axios.post("/api/user", userData)
     },
 
-    getUsers: function () {
-        return axios.get("/api/user")
+    getUsers: function (id) {
+        console.log(id)
+        return axios.get("/api/user/" + id)
     }
 };
