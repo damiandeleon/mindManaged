@@ -10,7 +10,7 @@ import API from '../utils/API'
 
 
 function Charts() {
-  const { isAuthenticated } = useAuth0();
+  const {user} = useAuth0()
 
   const [Data, setData1] = useState({
     date: "",
@@ -20,8 +20,8 @@ function Charts() {
   const [DataCoords, setDataCoords] = useState([]);
 
   useEffect(() => {
-
-    API.getEntries()
+    console.log(user.sub)
+    API.getEntries(user.sub)
       .then(res =>
         setDataCoords(res.data)
       )
