@@ -12,7 +12,7 @@ const Home = () => {
       <Jumbotron id="jumbo-bg" className="text-center jumbotron" style={{borderRadius: '20px'}}>
         <div id="fade-in">
           <h1 id="jumbo-title" style={{textShadow: '4px 4px rgba(50,50,50, 0.8)'}}>Mind <GiBrain style={{ color: 'rgb(255, 160, 176)' }}/> Managed</h1>
-          <h5>- A place to manage your mind -</h5>
+          <h5 id="jumbo-desc">- A place to manage your mind -</h5>
           <br></br>
           <LoginBtn name="Get Started" variant="outline-light" size="lg" />
         </div>
