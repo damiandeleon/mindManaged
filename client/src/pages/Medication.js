@@ -62,22 +62,6 @@ const Medication = () => {
 
     }
 
-    // const saveIntake = (e) => {
-    //     e.preventDefault();
-    //     let intake = [];
-    //     var key;
-    //     for (key in buttonState) {
-    //         if (buttonState[key] === true) {
-    //             intake.push(key);
-    //         }
-    //     }
-    //     API.saveIntake(intake)
-    //         .then(res => {
-    //             console.log(res)
-    //         })
-    //         .catch(err => console.log(err));
-    // }
-
     const getIntake = () => {
         API.getIntake()
             .then(res => {
@@ -202,7 +186,7 @@ const Medication = () => {
 
                         <br></br>
 
-                        <Card.Body id="fade-in2" style={{ background: 'rgba(188,226,237,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: '50%', overflow: 'auto' }}>
+                        <Card.Body id="fade-in2" style={{ background: 'rgba(188,226,237,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: '50%', overflow: 'auto', margin: "15px" }}>
                             <h1> Your prescriptions </h1>
                             <hr></hr>
                             {SavedRx.length ? (
@@ -221,8 +205,11 @@ const Medication = () => {
                         </Card.Body>
                     </Col>
                 </Row>
+
+                <br></br>
+
                 <Row>
-                    <Card.Body style={{ background: "white" }}>
+                    <Card.Body id="fade-in2" style={{ background: 'rgba(188,226,237,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: '50%', overflow: 'auto', margin: "15px" }}>
                         <h1>Oops!</h1>
                         <p>Skipped or forgot medication on these days:</p>
                         {buttonState.length ? (
