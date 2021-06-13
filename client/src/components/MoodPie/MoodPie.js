@@ -57,7 +57,7 @@ function MoodPie(props) {
 
   
       return (
-        <text x={x} y={y} fill={"black"} fontSize={9} textAnchor={x > cx ? 'middle' : 'middle'}  >
+        <text x={x} y={y} fill={"black"} fontSize={13} textAnchor={x > cx ? 'middle' : 'middle'}  >
           {myData[index].name}  {(percent * 100).toFixed(0)}%
         </text>
         
