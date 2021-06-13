@@ -33,7 +33,7 @@ function Navigator() {
   },[isAuthenticated, user, userData])
 
     return (
-      <Navbar collapseOnSelect expand="sm" variant="light" bg="light">
+      <Navbar collapseOnSelect expand="sm" variant="light" style={{backgroundColor: 'rgba(255,255,255,0.9)'}}>
       <Navbar.Brand href="/">Mind Managed</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
