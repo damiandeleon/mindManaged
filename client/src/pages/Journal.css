@@ -49,6 +49,19 @@
    animation-iteration-count: 1;
 }
 
+#JournalEntryBox {
+    box-shadow: 0 4px 8px 0 rgb(56, 78, 56), 0 6px 20px 0 black
+}
+
+#JournalTextBox{
+    text-shadow: black;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 25px;
+    padding: 15px;
+    background-color: lightgoldenrodyellow;
+    border: thick black;
+}
+
 @keyframes jumboFade { 
     0% {opacity: 0;} 
     100% {opacity: 1;}

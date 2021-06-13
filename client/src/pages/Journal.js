@@ -16,6 +16,7 @@ const Journal = () => {
     var mm = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
     var ampm = HHMT >= 12 ? 'pm' : 'am';
     const {user} = useAuth0()
+    const id = user.sub;
 
     today = MM + '/' + DD + '/' + YYYY
     // + ' ' + HH + ':' + mm + ampm;
@@ -37,29 +38,17 @@ const Journal = () => {
 
     const loadEntries = (id) => {
         API.getEntries(id)
-            .then(res =>
-                setJournalEntry(res.data),
-                )
+            .then(res => setJournalEntry(res.data))
             .catch(err => console.log(err));
     };
 
-    const findUser = (id) => {
-        API.getUsers(id)
-            .then()
-          .then(() => {loadEntries(id)            
-          })
-      }
-
-
-
     const deleteEntry = (id) => {
         API.deleteEntry(id)
-            .then(res => loadEntries())
+            .then(res => loadEntries(user.sub))
             .catch(err => console.log(err));
     };
 
     const handleTextChange = (event) => {
-
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value })
     };
@@ -75,7 +64,10 @@ const Journal = () => {
             user_id: user.sub, //assigns the loggged in user to the post
         })
 
-            .then(res => loadEntries())
+            .then(res => loadEntries(user.sub))
+            .then(setFormObject({
+                text: ""
+            }))
             .catch(err => console.log(err));
 
     }
@@ -97,7 +89,7 @@ const Journal = () => {
                 <Col sm={12} md={12} lg={8} >
                 {/* <Card.Img id="CardImg" fluid src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_482405534_309336.jpg"/> */}
 
-                    <Form style={{ backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black' }} onSubmit={handleFormSubmit} id="fade-in2">
+                    <Form style={{ backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black' }}>
                         
                         <CardDeck>
                             
@@ -124,7 +116,7 @@ const Journal = () => {
                                 </Form.Label>
                             </Card.Body>
                         </CardDeck>
-
+                        <hr></hr>
                         <CardDeck variant='top'>
                             <Card.Body style={{  textAlign: 'center' }}>
                                 <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Today's Journal Entry</h1>
@@ -132,10 +124,11 @@ const Journal = () => {
                                     as="textarea"
                                     rows={8}
                                     name="text"
+                                    placeholder="enter text here"
                                     onChange={handleTextChange}
                                 />
                                 <Button style={{ margin: '10px' }}
-                                    type="submit" value="Submit">Submit</Button>
+                                    type="submit" value="Submit" onClick={handleFormSubmit}  >Submit</Button>
                             </Card.Body>
                         </CardDeck>
 
@@ -150,6 +143,7 @@ const Journal = () => {
                 <Col sm={12} md={12} lg={4}>
                     <Card.Body id="fade-in2" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', color: 'black', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', overflow: 'auto', height: '500px' }}>
                         <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Journal Entries</h1>
+                        <h6>Hover over and click on each entry to see the details</h6>
                         <hr></hr>
                         {JournalEntry.length ? (
                             <ListGroup>

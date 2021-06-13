@@ -65,6 +65,7 @@ function Charts() {
             <Col style={{margin: '10px auto'}}>
                 <div>
                   <ChartTitle name='Mood Line Chart' />
+                  <h6>Track mood patterns by day</h6>  
                   <MoodLine info={DataCoords}/>
                 </div>
             </Col>
@@ -74,6 +75,7 @@ function Charts() {
             <Col style={{margin: '10px auto'}}>
               <div>
                 <ChartTitle name='Mood Pie' />
+                <h6>Track mood patterns by frequency</h6>
                 <MoodPie data={DataCoords}/>
               </div>
             </Col>
