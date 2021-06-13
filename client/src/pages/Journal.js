@@ -89,7 +89,7 @@ const Journal = () => {
                 <Col sm={12} md={12} lg={8} >
                 {/* <Card.Img id="CardImg" fluid src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_482405534_309336.jpg"/> */}
 
-                    <Form style={{ backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black' }}>
+                    <Form style={{ backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black' }} id="fade-in" >
                         
                         <CardDeck>
                             
@@ -124,11 +124,12 @@ const Journal = () => {
                                     as="textarea"
                                     rows={8}
                                     name="text"
-                                    placeholder="enter text here"
+                                    placeholder="Enter text here"
                                     onChange={handleTextChange}
+                                    style={{borderRadius: '10px', width: '97%', marginLeft: 'auto', marginRight: 'auto'}}
                                 />
                                 <Button style={{ margin: '10px' }}
-                                    type="submit" value="Submit" onClick={handleFormSubmit}  >Submit</Button>
+                                    type="submit" value="Submit" onClick={handleFormSubmit} variant="primary" >Submit</Button>
                             </Card.Body>
                         </CardDeck>
 
@@ -141,12 +142,12 @@ const Journal = () => {
 
                 </Col>
                 <Col sm={12} md={12} lg={4}>
-                    <Card.Body id="fade-in2" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', color: 'black', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', overflow: 'auto', height: '500px' }}>
+                    <Card.Body id="fade-in2" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', color: 'black', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', height: '535px' }}>
                         <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Journal Entries</h1>
-                        <h6>Hover over and click on each entry to see the details</h6>
+                        <h6>Hover over and click on an entry to see the details</h6>
                         <hr></hr>
                         {JournalEntry.length ? (
-                            <ListGroup>
+                            <ListGroup style={{ overflow: 'auto', height: '370px', borderRadius: '5px' }}>
                                 {JournalEntry.map(entry => (
 
                                     <ListGroup.Item key={entry._id}>

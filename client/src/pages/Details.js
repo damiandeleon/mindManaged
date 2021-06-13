@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Col, Row, Container, Jumbotron, Card, CardGroup } from "react-bootstrap";
+import { Col, Row, Container, Jumbotron, Card } from "react-bootstrap";
 import API from "../utils/API";
 import './Journal.css';
 

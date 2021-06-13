@@ -1,8 +1,5 @@
 import { toString } from "lodash";
-// import React from "react";
-// import { Row } from 'react-bootstrap';
-// import { RadialChart } from 'react-vis';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
 
 
@@ -46,7 +43,7 @@ function MoodPie(props) {
   ];
   // const myData = [{ angle: one, label: showLabel(one, "Very Sad")}, { angle: two, label: showLabel(two, "Somewhat Sad")}, { angle: three, label: showLabel(three, "Neutral")}, { angle: four, label: showLabel(four, "Somewhat Happy"), className: 'somewhatHappyWedge'}, { angle: five, label: showLabel(five, "Very Happy")}]
   // console.log(myData)
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#cfb4ed', '#FFDAB9',]; 
+  const COLORS = ['#DF4740', '#EE975A', '#65CA68', '#1489EA', '#A926BB']; 
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -57,8 +54,8 @@ function MoodPie(props) {
 
   
       return (
-        <text x={x} y={y} fill={"black"} fontSize={13} textAnchor={x > cx ? 'middle' : 'middle'}  >
-          {myData[index].name}  {(percent * 100).toFixed(0)}%
+        <text x={x} y={y} fill={"black"} textAnchor={x > cx ? 'middle' : 'middle'}  >
+          {(percent * 100).toFixed(0)}%
         </text>
         
       );
@@ -68,17 +65,7 @@ function MoodPie(props) {
 
 
   return (
-    // <Row className="d-flex justify-content-center">
-    //   {/* Mood Pie Chart */}
-    //   <RadialChart
-    //     id="chart"
-    //     data={myData}
-    //     width={300}
-    //     height={300}
-    //     showLabels={true}
-    //   />
-    // </Row>
-    <ResponsiveContainer height={300}>
+    <ResponsiveContainer height={400}>
       <PieChart width={800} height={800}>
         <Pie
           data={myData}
@@ -86,13 +73,14 @@ function MoodPie(props) {
           cy={"50%"}
           labelLine={false}
           label={renderCustomizedLabel}
-          outerRadius={"100%"}
+          outerRadius={"90%"}
           dataKey={"value"}
         >
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index]} />
           ))}
         </Pie>
+        <Legend align="center" layout="horizontal" iconSize="18px"/>
       </PieChart>
     </ResponsiveContainer>
 
