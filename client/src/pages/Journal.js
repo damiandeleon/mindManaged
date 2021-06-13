@@ -86,15 +86,15 @@ const Journal = () => {
     return (
         <Container>
             <Jumbotron id="jumbo-bg2" style={{ borderRadius: '20px' }}>
-                <div className="text-center">
-                    <h1 style={{ fontSize: '75px', textShadow: '4px 4px rgba(50,50,50, 0.8)'  }} variant="info" id="jumbo-title">Journal</h1>
+                <div className="text-center" id="jumbo-title">
+                    <h1 id="jumbo-title" style={{ textShadow: '4px 4px rgba(50,50,50, 0.8)' }}>Journal</h1>
                     <h5>- A sanctuary for your thoughts -</h5>
-                    <h6 >{today} </h6>
+                    <h6>{today}</h6>
                 </div>
             </Jumbotron>
             <Row>
 
-                <Col md={9} >
+                <Col sm={12} md={12} lg={8} >
                 {/* <Card.Img id="CardImg" fluid src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_482405534_309336.jpg"/> */}
 
                     <Form style={{ backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black' }} onSubmit={handleFormSubmit} id="fade-in2">
@@ -147,8 +147,8 @@ const Journal = () => {
 
 
                 </Col>
-                <Col md={3}>
-                    <Card.Body id="fade-in2" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', color: 'black', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black' }}>
+                <Col sm={12} md={12} lg={4}>
+                    <Card.Body id="fade-in2" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', color: 'black', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', overflow: 'auto', height: '500px' }}>
                         <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Journal Entries</h1>
                         <hr></hr>
                         {JournalEntry.length ? (

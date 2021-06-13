@@ -134,11 +134,10 @@ const Medication = () => {
     // render() {
     return (
         <Container>
-            <Jumbotron id="jumbo-bg" className="text-center jumbotron" style={{ borderRadius: '20px' }}>
+            <Jumbotron id="jumbo-bg" className="text-center" style={{ borderRadius: '20px' }}>
                 <div id="fade-in">
                     <h1 id="jumbo-title" style={{ textShadow: '4px 4px rgba(50,50,50, 0.8)' }}>Medication</h1>
                     <h5>- Find and track your medication -</h5>
-                    <br></br>
                 </div>
             </Jumbotron>
 
@@ -163,7 +162,7 @@ const Medication = () => {
                         </Row>
                     </Col>
                     <Col sm={12} md={12} lg={4} className="text-center">
-                        <Card.Body id="fade-in2" style={{ backgroundColor: 'rgba(255,255,255,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: '50%' }}>
+                        <Card.Body id="fade-in2" style={{ backgroundColor: 'rgba(255,255,255,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: 'auto' }}>
                             <h2>Hold up!</h2>
                             <hr></hr>
                             <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
