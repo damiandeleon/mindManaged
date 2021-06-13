@@ -199,7 +199,7 @@ const Medication = () => {
                                     ))}
                                 </ListGroup>
                             ) : (
-                                    <h4>No Results</h4>
+                                    <h4>No Results to Display</h4>
                                 )}
                         </Card.Body>
                     </Col>
