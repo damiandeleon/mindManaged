@@ -142,7 +142,7 @@ const Journal = () => {
 
                 </Col>
                 <Col sm={12} md={12} lg={4}>
-                    <Card.Body id="fade-in2" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', color: 'black', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', height: '535px' }}>
+                    <Card.Body id="fade-in2" style={{  textAlign: 'center', backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', color: 'black', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', height: 'auto' }}>
                         <h1 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)' }}>Journal Entries</h1>
                         <h6>Hover over and click on an entry to see the details</h6>
                         <hr></hr>
