@@ -8,7 +8,7 @@ const LogoutBtn = () => {
   return (
     isAuthenticated &&
     <Button 
-      variant="outline-success" 
+      variant="success" 
       onClick={logout}>
       Log out
     </Button>
