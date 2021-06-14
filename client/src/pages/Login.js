@@ -4,7 +4,11 @@ import LoginBtn from '../components/LoginBtn/LoginBtn'
 import { Card } from 'react-bootstrap'
 import './Login.css'
 const Login = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div style={{color: 'white', fontSize: '50px', margin: '10%', textAlign: 'center'}}>Loading...</div>
+  }
   
   return (
     !isAuthenticated &&

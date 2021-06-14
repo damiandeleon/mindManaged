@@ -5,12 +5,11 @@ import API from "../../utils/API";
 import { useAuth0 } from '@auth0/auth0-react';
 
 function RxResults(props) {
-    const { prescriptions } = props;
+    const { prescriptions, getSavedRx } = props;
 
     const { user } = useAuth0();
 
     const saveRx = (item) => {
-        console.log("button")
         let dosage = '';
 
         item.active_ingredients.forEach((ingredient) => {
@@ -23,8 +22,8 @@ function RxResults(props) {
             user_id: user.sub
         }
         API.saveRx(chosenRx)
-            .then(res => {
-                console.log(res)
+            .then(() => {
+              getSavedRx(user.sub)
             })
             .catch(err => console.log(err));
     }
@@ -33,7 +32,6 @@ function RxResults(props) {
         <>
             {
                 prescriptions.map((item, idx) => {
-                    console.log("prescription item\n\n\n", item)
                     let dosage = '';
 
                     item.active_ingredients.forEach((ingredient) => {
