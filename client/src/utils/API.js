@@ -21,7 +21,6 @@ export default {
     },
 
     saveNo: function (intake) {
-        console.log("intake", intake);
         return axios.post("/api/intake", intake);
     },
 

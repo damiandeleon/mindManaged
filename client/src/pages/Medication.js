@@ -13,9 +13,14 @@ const Medication = () => {
     var MM = String(today.getMonth() + 1).padStart(2, '0');
     var YYYY = today.getFullYear();
     const { user } = useAuth0();
-
+    
     today = MM + '/' + DD + '/' + YYYY
 
+    const [showResults, setShowResults] = useState({
+      display: false,
+      buttonName: 'Intake Tracker'
+    })
+    
     const [state, setState] = useState({
         search: "",
         prescriptions: [],
@@ -37,43 +42,58 @@ const Medication = () => {
     })
 
     const toggleChangeYes = () => {
-        setButtonState(prevState => ({
-            isYes: !prevState.isYes,
-        }));
+        setButtonState({
+            isYes: true,
+        });
     }
 
     const toggleChangeNo = () => {
-        setButtonState(prevState => ({
-            isNo: !prevState.isNo,
-        }));
+        setButtonState({
+            isNo: true,
+        });
+    }
 
-        let intake = [];
-        let skippedDay = today;
+    const intakeSubmit = () => {
+      let intake = [];
+      let skippedDay = today;
 
-        if (buttonState.isNo) {
-            console.log("made it")
-            intake.push(skippedDay);
-            var missedMeds = intake;
-        }
-        const Dates = {
-            dates: missedMeds,
-            user_id: user.sub
-        }
-        API.saveNo(Dates)
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => console.log(err));
+      if (buttonState.isNo) {
+          intake.push(skippedDay);
+          var missedMeds = intake;
+      }
+      const Dates = {
+          dates: missedMeds,
+          user_id: user.sub
+      }
+      API.saveNo(Dates)
+      .then(res => {
+        console.log(res)
+    })
+        .catch(err => console.log(err));
 
+      window.location.reload();
     }
 
     const getIntake = (id) => {
         API.getIntake(id)
             .then(res => {
-                console.log(res)
                 setButtonState(res.data)
             })
             .catch(err => console.log(err));
+    }
+
+    const renderComponent = () => {
+      if (showResults.display === false) {
+        setShowResults({
+          display: true,
+          buttonName: 'Search'
+        })
+      } else {
+        setShowResults({
+          display: false,
+          buttonName: 'Intake Tracker'
+        })
+      }
     }
 
     useEffect(() => {
@@ -86,39 +106,29 @@ const Medication = () => {
                 })
                 setState({ prescriptions: products })
             })
-            .then(console.log(`the product searched is ${state.prescriptions}`))
             .catch(err => console.log(err));
 
         getSavedRx(user.sub)
 
         getIntake(user.sub)
 
-    }, [state.prescriptions, state.search])
+    }, [state.prescriptions, state.search, user.sub])
 
     const getSavedRx = (id) => {
         API.getSavedRx(id)
             .then(res => {
-                console.log(res)
                 setSavedRx(res.data)
             })
             .catch(err => console.log(err));
     }
 
-    // const findUser = (id) => {
-    //     API.getUsers(id)
-    //         .then()
-    //       .then(() => {getSavedRx(id), getIntake(id)            
-    //       })
-    //   }
-
     const deleteRx = (id) => {
         API.deleteRx(id)
-            .then(res => getSavedRx())
+            .then(() => getSavedRx(user.sub))
             .catch(err => console.log(err));
     };
 
     const handleInputChange = event => {
-        console.log('rx');
         const value = event.target.value;
 
         setState({
@@ -143,101 +153,116 @@ const Medication = () => {
             .catch(err => console.log(err));
     };
 
-    // render() {
+    const IntakeTracker = () => (
+      <Col xs={12} sm={12} md={8} lg={8} style={{margin: '0px auto'}}>
+        <Card style={{ backgroundColor: 'rgba(165,200,160,0.975)', borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black' }} className="text-center">
+            {buttonState.length ? (
+              <div style={{color: 'black', margin: '0px auto', width: 'auto'}}>
+                <h1 style={{ margin: '10px' }}>Oops!</h1>
+                <p>You didn't take your medication on the following day(s):</p>
+                <Card.Body style={{ width: 'auto' }}>
+                  <ListGroup variant="flush" style={{ margin: '0px auto', maxHeight: '500px', overflow: 'auto'}}>
+                      {buttonState.map((item, itemIdx) => {
+                        if(item.dates.length === 0) {
+                          return null;
+                        }
+                        else {
+                          return (
+                            <div style={{margin: '5px'}}>
+                              < ListGroup.Item key={itemIdx} style={{ borderRadius: '10px' }}>
+                                    <p style={{ fontSize: 'medium', margin: '0px 0px' }} >{item.dates}</p>
+                              </ListGroup.Item>
+                            </div>
+                          )
+                        }
+                      })}
+                  </ListGroup>
+                </Card.Body>
+              </div>
+            ) : (
+              <h3>No skipped days yet (good job!)</h3>
+            )}
+        </Card>
+      </Col>
+    )
+
     return (
         <Container>
             <Jumbotron id="jumbo-bg" className="text-center" style={{ borderRadius: '20px' }}>
                 <div id="fade-in">
                     <h1 id="jumbo-title" style={{ textShadow: '4px 4px rgba(50,50,50, 0.8)' }}>Medication</h1>
                     <h5>- Find and track your medication -</h5>
+                    <br></br>
+                    <Button onClick={renderComponent} variant="outline-light">{showResults.buttonName}</Button>
                 </div>
             </Jumbotron>
-
+            { showResults.display ? <IntakeTracker /> :         
+            
             <Container style={{ marginTop: '3%' }}>
-                <Row>
-                    <Col id="fade-in2" className="search-img" style={{ borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', marginBottom: '3%' }} sm={12} md={12} lg={8}>
-                        <Row>
-                            <Container className="text-center" style={{ textAlign: 'center' }}>
-                                <h2>Search by Brand Name:</h2>
-                                <SearchForm
-                                    handleInputChange={handleInputChange}
-                                    handleFormSubmit={handleFormSubmit}
-                                    prescriptions={state.prescriptions}
-                                    search={state.search}
-                                />
-                            </Container>
-                        </Row>
-                        <Row>
-                            <RxResults
+            <Row>
+                <Col className="search-img" style={{ borderRadius: '10px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', marginBottom: '3%' }} sm={12} md={12} lg={8}>
+                    <Row>
+                        <Container className="text-center" style={{ textAlign: 'center' }}>
+                            <h2>Search by Brand Name:</h2>
+                            <SearchForm
+                                handleInputChange={handleInputChange}
+                                handleFormSubmit={handleFormSubmit}
                                 prescriptions={state.prescriptions}
+                                search={state.search}
                             />
-                        </Row>
-                    </Col>
-                    <Col sm={12} md={12} lg={4} className="text-center">
-                        <Card.Body id="fade-in2" style={{ backgroundColor: 'rgba(255,255,255,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: 'auto' }}>
-                            <h2>Hold up!</h2>
-                            <hr></hr>
-                            <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
-                            <Form.Group controlId="formBasicCheckbox">
-                                <Form.Check id="yes" type="checkbox" checked={buttonState.isYes}
-                                    onChange={toggleChangeYes} label="Yes" />
-                                <Form.Check id="no" type="checkbox" checked={buttonState.isNo}
-                                    onChange={toggleChangeNo} label="No" />
-                            </Form.Group>
+                        </Container>
+                    </Row>
+                    <Row>
+                        <RxResults
+                            prescriptions={state.prescriptions}
+                            getSavedRx={getSavedRx}
+                        />
+                    </Row>
+                </Col>
+                <Col sm={12} md={12} lg={4} className="text-center">
+                    <Card.Body style={{ backgroundColor: 'rgba(255,255,255,0.95)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: 'auto' }}>
+                        <h2>Hold up!</h2>
+                        <hr></hr>
+                        <Form.Label id="question">Did you take your meds yet? 🤔</Form.Label>
+                        <Form.Group controlId="formBasicCheckbox">
+                            <Form.Check id="yes" type="checkbox" checked={buttonState.isYes}
+                                onChange={toggleChangeYes} label="Yes" />
+                            <Form.Check id="no" type="checkbox" checked={buttonState.isNo}
+                                onChange={toggleChangeNo} label="No" />
+                        </Form.Group>
 
-                            <hr></hr>
+                        <hr></hr>
 
-                            <Alert id="alert">
-                                <p>To find important information about potentially dangerous drug interactions, please visit the {' '}
-                                    <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
-                      </p>
-                            </Alert>
-                            <Button size="small" variant="outline-primary" onClick={toggleChangeNo}>Save</Button>
-                        </Card.Body>
+                        <Alert id="alert">
+                            <p>To find important information about potentially dangerous drug interactions, please visit the {' '}
+                                <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
+                  </p>
+                        </Alert>
+                        <Button size="small" variant="primary" onClick={intakeSubmit}>Save</Button>
+                    </Card.Body>
 
-                        <br></br>
+                    <br></br>
 
-                        <Card.Body id="fade-in2" style={{ background: 'rgba(188,226,237,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: 'auto' }}>
-                            <h1> Your prescriptions </h1>
-                            <hr></hr>
-                            {SavedRx.length ? (
-                                <ListGroup variant="flush" style={{ overflow: 'auto', height: '350px', borderRadius: '5px' }}>
-                                    {SavedRx.map(rx => (
-                                        <ListGroup.Item key={rx._id}>
-                                            <p style={{ fontSize: 'medium' }} > Name: {rx.brand_name}</p>
-                                            <p style={{ fontSize: 'medium' }} >  Dosage: {rx.dosage} </p>
-                                            <Button size="small" variant="outline-danger" onClick={() => deleteRx(rx._id)}>Delete</Button>
-                                        </ListGroup.Item>
-                                    ))}
-                                </ListGroup>
-                            ) : (
-                                    <h4>No Results to Display</h4>
-                                )}
-                        </Card.Body>
-                    </Col>
-                </Row>
-
-                <br></br>
-
-                <Row>
-                    <Card.Body id="fade-in2" style={{ background: 'rgba(188,226,237,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: '50%', overflow: 'auto', margin: "15px" }}>
-                        <h1>Oops!</h1>
-                        <p>Skipped or forgot medication on these days:</p>
-                        {buttonState.length ? (
-                            <ListGroup variant="flush">
-                                {buttonState.map(item => (
-                                    // console.log(item.dates)
-                                    < ListGroup.Item >
-                                        <p style={{ fontSize: 'medium' }} >{item.dates}</p>
+                    <Card.Body style={{ backgroundColor: 'rgba(165,200,160,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: 'auto' }}>
+                        <h1> Your prescriptions </h1>
+                        <hr></hr>
+                        {SavedRx.length ? (
+                            <ListGroup variant="flush" style={{ overflow: 'auto', height: '350px', borderRadius: '5px' }}>
+                                {SavedRx.map(rx => (
+                                    <ListGroup.Item key={rx._id}>
+                                        <p style={{ fontSize: 'medium' }} > Name: {rx.brand_name}</p>
+                                        <p style={{ fontSize: 'medium' }} > Dosage: {rx.dosage} </p>
+                                        <Button size="sm" variant="danger" onClick={() => deleteRx(rx._id)}>Delete</Button>
                                     </ListGroup.Item>
                                 ))}
                             </ListGroup>
                         ) : (
-                                <h3>No skipped days yet (good job!)</h3>
+                                <h4>No Results to Display</h4>
                             )}
                     </Card.Body>
-                </Row>
-            </Container>
+                </Col>
+            </Row>
+          </Container>}
         </Container>
     );
     // }

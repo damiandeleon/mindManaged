@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchForm = (props) => {
     return (
-        <div id="fade-in2">
+        <div>
             <form className="search-form"
                 onSubmit={props.handleFormSubmit}
             >

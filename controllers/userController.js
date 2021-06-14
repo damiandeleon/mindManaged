@@ -21,6 +21,8 @@ module.exports = {
           console.log('userData: ', userData)
           res.json(userData)
         })
-        .catch(() => console.log("User already exists!"));
+        .catch(() => {
+          return
+        });
     }
 }
