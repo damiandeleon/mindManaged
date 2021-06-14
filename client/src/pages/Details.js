@@ -18,19 +18,21 @@ function Detail(props) {
   })
 
   return (
-    <Container fluid>
-      <Jumbotron id="jumbo-bg2" style={{ borderRadius: '20px' }}>
-        <h1> Journal Details for Entry on {entry.date} <span><h5> at {entry.time}</h5></span></h1>
+    <Container>
+      <Jumbotron id="jumbo-bg2" style={{ borderRadius: '20px', background: 'rgba(114, 134, 117, 0.9)' }} className="text-center">
+        <h1 style={{textShadow: '4px 4px rgba(50,50,50, 0.8)'}}> Journal Details - {entry.date} <span><h5> at {entry.time}</h5></span></h1>
         <hr></hr>
-        <h3 id="moodLevel"> Mood Level: {entry.moodLevel}</h3>
+        <h3 id="moodLevel" style={{textShadow: '4px 4px rgba(50,50,50, 0.8)'}}> Mood Level: {entry.moodLevel}</h3>
+        <br></br>
+      <Card>
+        <p style={{ color:'black', textAlign: 'left', padding: '10px 0px 0px 10px' }}>{entry.text}</p>
+      </Card>
+      <div  style={{ fontSize: '18px', marginTop: '35px' }}>
+        <Link to="/journal" style={{color: 'white'}}>← Back to Journal Page</Link>
+      </div>
       </Jumbotron>
-      <Row>
-        <Col size="md-12">
 
-
-        </Col>
-      </Row>
-      <Row>
+      {/* <Row>
         <Col size="md-10 md-offset-1">
           <Card>
             <h2 style={{ textShadow: '1px 1px rgba(75,75,75, 0.6)', textAlign: 'center' }}>Journal Entry</h2>
@@ -46,7 +48,7 @@ function Detail(props) {
         <Col size="md-2">
           <Link to="/journal">← Back to Journal Page</Link>
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   );
 }
