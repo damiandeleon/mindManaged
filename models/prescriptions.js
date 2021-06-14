@@ -5,7 +5,7 @@ const prescriptionSchema = new Schema({
     brand_name: { type: String, required: true },
     dosage: { type: String, required: true },
     product_number: { type: Number, required: true },
-    user_id: { type: String, required: false }
+    user_id: { type: String, required: true }
 });
 
 const SavedRx = mongoose.model("SavedRx", prescriptionSchema);

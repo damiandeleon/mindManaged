@@ -1,10 +1,13 @@
 import React from "react";
-import { Card, Alert, Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import "./RxResults.css";
-import API from "../../utils/API"
+import API from "../../utils/API";
+import { useAuth0 } from '@auth0/auth0-react';
 
 function RxResults(props) {
     const { prescriptions } = props;
+
+    const { user } = useAuth0();
 
     const saveRx = (item) => {
         console.log("button")
@@ -16,7 +19,8 @@ function RxResults(props) {
         const chosenRx = {
             brand_name: item.brand_name,
             dosage: dosage,
-            product_number: item.product_number
+            product_number: item.product_number,
+            user_id: user.sub
         }
         API.saveRx(chosenRx)
             .then(res => {
@@ -36,8 +40,8 @@ function RxResults(props) {
                         dosage = ingredient.strength
                     })
                     return (
-                        <Card key={idx} style={{ width: '18rem' , borderRadius: '10px', padding: '5px 10px 5px 10px', textAlign: 'center', margin: '10px auto'}}>
-                            <Card.Img variant="top" id="happy-pills" src="https://previews.123rf.com/images/lefttime/lefttime1707/lefttime170700008/82264314-green-red-and-blue-pills-smiling-different-emotion-cartoon-style-vector-illustration-on-white-backgr.jpg" style={{alignSelf: 'center'}}/>
+                        <Card key={idx} style={{ width: '18rem', borderRadius: '10px', padding: '5px 10px 5px 10px', textAlign: 'center', margin: '10px auto' }}>
+                            <Card.Img variant="top" id="happy-pills" src="https://previews.123rf.com/images/lefttime/lefttime1707/lefttime170700008/82264314-green-red-and-blue-pills-smiling-different-emotion-cartoon-style-vector-illustration-on-white-backgr.jpg" style={{ alignSelf: 'center' }} />
                             <Card.Body>
                                 <Card.Title>{item.brand_name}</Card.Title>
                                 <Card.Text>
@@ -45,10 +49,6 @@ function RxResults(props) {
                                 </Card.Text>
                             </Card.Body>
                             <Button onClick={() => saveRx(item)} id="save" variant="outline-success">Save Rx</Button>{' '}
-                            {/* <Alert>
-                                To find important information about potentially dangerous drug interactions, please visit the {' '}
-                                <Alert.Link href="https://www.drugs.com/drug_interactions.html" target="_blank" rel="noopener noreferrer">Drugs.com interaction checker</Alert.Link>.
-                            </Alert> */}
                         </Card>
                     )
                 })

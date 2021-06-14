@@ -5,12 +5,14 @@ import Container from "../components/Container/Container";
 import { Card, Form, ListGroup, Button, Alert, Row, Col, Jumbotron } from 'react-bootstrap';
 import "./Medication.css";
 import API from "../utils/API";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Medication = () => {
     let today = new Date();
     var DD = String(today.getDate()).padStart(2, '0');
     var MM = String(today.getMonth() + 1).padStart(2, '0');
     var YYYY = today.getFullYear();
+    const { user } = useAuth0();
 
     today = MM + '/' + DD + '/' + YYYY
 
@@ -23,13 +25,15 @@ const Medication = () => {
     const [SavedRx, setSavedRx] = useState({
         brand_name: "",
         dosage: "",
-        product_number: 0
+        product_number: 0,
+        user_id: ""
     })
 
     const [buttonState, setButtonState] = useState({
         isYes: false,
         isNo: false,
-        dates: []
+        dates: [],
+        user_id: ""
     })
 
     const toggleChangeYes = () => {
@@ -52,7 +56,8 @@ const Medication = () => {
             var missedMeds = intake;
         }
         const Dates = {
-            dates: missedMeds
+            dates: missedMeds,
+            user_id: user.sub
         }
         API.saveNo(Dates)
             .then(res => {
@@ -62,8 +67,8 @@ const Medication = () => {
 
     }
 
-    const getIntake = () => {
-        API.getIntake()
+    const getIntake = (id) => {
+        API.getIntake(id)
             .then(res => {
                 console.log(res)
                 setButtonState(res.data)
@@ -84,20 +89,27 @@ const Medication = () => {
             .then(console.log(`the product searched is ${state.prescriptions}`))
             .catch(err => console.log(err));
 
-        getSavedRx()
+        getSavedRx(user.sub)
 
-        getIntake()
+        getIntake(user.sub)
 
     }, [state.prescriptions, state.search])
 
-    const getSavedRx = () => {
-        API.getSavedRx()
+    const getSavedRx = (id) => {
+        API.getSavedRx(id)
             .then(res => {
                 console.log(res)
                 setSavedRx(res.data)
             })
             .catch(err => console.log(err));
     }
+
+    // const findUser = (id) => {
+    //     API.getUsers(id)
+    //         .then()
+    //       .then(() => {getSavedRx(id), getIntake(id)            
+    //       })
+    //   }
 
     const deleteRx = (id) => {
         API.deleteRx(id)
