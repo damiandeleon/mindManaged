@@ -1,10 +1,13 @@
 import React from 'react'
 import { Jumbotron, Card, Row, Col, Container, CardDeck } from 'react-bootstrap';
 import { GiBrain } from 'react-icons/gi';
+import { BsBoxArrowInRight } from 'react-icons/bs';
 import LoginBtn from '../components/LoginBtn/LoginBtn';
 import './Home.css'
-
+import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 const Home = () => {
+  const {  isAuthenticated } = useAuth0();
 
 
   return (
@@ -34,6 +37,11 @@ const Home = () => {
                       <li>Get informed on different drug facts and interactions</li>
                     </ul>
                 </Card.Body>
+                  {isAuthenticated &&
+                    <Link to="/medication" style={{color: 'forestgreen', fontSize: '16px', margin: '10px 15px', textAlign: 'right' }}>
+                      Medication page <BsBoxArrowInRight style={{paddingBottom: '2px'}} />
+                    </Link>
+                  }
               </Card>
             </Col>
 
@@ -48,14 +56,19 @@ const Home = () => {
                     <ul id="card-list">
                       <li>Journal important details/events which affect your mood and life</li>
                       <li>Entries are saved for personal records or to show your mental healthcare professional</li>
-                    </ul>
+                    </ul>     
                 </Card.Body>
+                  {isAuthenticated &&
+                    <Link to="/journal" style={{color: 'forestgreen', fontSize: '16px', margin: '10px 15px', textAlign: 'right' }}>
+                      Journal page <BsBoxArrowInRight style={{paddingBottom: '2px'}} />
+                    </Link>
+                  }
               </Card>
             </Col>
 
             <Col sm={12} md={6} lg={4}>
               <Card style={{ width: '350px', border: 'none', height: '720px', marginLeft: 'auto', marginRight: 'auto', marginTop: '5px', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px' }} bg="light" id="fade-in3">
-                <Card.Img style={{height: '350px', borderRadius: '10px'}} variant="top" src="https://thumbs.dreamstime.com/b/simple-bar-chart-graph-diagram-icon-cartoon-vector-flat-design-green-background-long-shadow-207449005.jpg"/>
+                <Card.Img style={{height: '350px', borderRadius: '10px'}} variant="top" src="https://cdn.pixabay.com/photo/2017/05/14/03/45/gui-2311261_960_720.png"/>
                 <Card.Body>
                   <Card.Title className="text-center" id="card-title">
                     Personalized Graphs
@@ -66,6 +79,11 @@ const Home = () => {
                       <li>Prescription intake chart to see when you've taken certain meds</li>
                     </ul>
                 </Card.Body>
+                  {isAuthenticated &&
+                    <Link to="/charts" style={{color: 'forestgreen', fontSize: '16px', margin: '10px 15px', textAlign: 'right' }}>
+                      Charts page <BsBoxArrowInRight style={{paddingBottom: '2px'}} />
+                    </Link>
+                  }
               </Card>
             </Col>
           </CardDeck>
