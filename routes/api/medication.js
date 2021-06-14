@@ -13,4 +13,8 @@ router
     .route("/:id")
     .delete(rxController.remove);
 
+router
+    .route("/user/:user_id")
+    .get(rxController.findByUserId)
+
 module.exports = router;

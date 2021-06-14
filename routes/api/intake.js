@@ -7,4 +7,8 @@ router
     .get(intakeController.findAll)
     .post(intakeController.create);
 
+router
+    .route("/user/:user_id")
+    .get(intakeController.findByUserId)
+
 module.exports = router;

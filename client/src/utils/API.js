@@ -16,8 +16,8 @@ export default {
         return axios.delete("/api/medication/" + id);
     },
 
-    getSavedRx: function () {
-        return axios.get("/api/medication");
+    getSavedRx: function (user_id) {
+        return axios.get("/api/medication/user/" + user_id);
     },
 
     saveNo: function (intake) {
@@ -25,9 +25,9 @@ export default {
         return axios.post("/api/intake", intake);
     },
 
-    getIntake: function (intake) {
-        console.log("get intake", intake);
-        return axios.get("/api/intake", intake);
+    getIntake: function (user_id) {
+        console.log("get intake", user_id);
+        return axios.get("/api/intake/user/" + user_id);
     },
 
     getEntries: function (user_id) {
