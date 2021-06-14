@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const intakeSchema = new Schema({
-    // user: { type: Schema.Types.ObjectId },
+    user_id: { type: String, required: true },
     dates: { type: Array, required: true },
 });
 
