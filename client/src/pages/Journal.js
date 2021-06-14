@@ -54,8 +54,7 @@ const Journal = () => {
     };
 
     const handleFormSubmit = (event) => {
-        event.preventDefault();
-
+        //event.preventDetault() was removed to allow page to refresh and clear out input box
         API.saveEntry({
             moodLevel: formObject.moodLevel,
             text: formObject.text,
@@ -65,9 +64,6 @@ const Journal = () => {
         })
 
             .then(res => loadEntries(user.sub))
-            .then(setFormObject({
-                text: ""
-            }))
             .catch(err => console.log(err));
 
     }
