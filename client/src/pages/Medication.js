@@ -185,11 +185,11 @@ const Medication = () => {
 
                         <br></br>
 
-                        <Card.Body id="fade-in2" style={{ background: 'rgba(188,226,237,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: '50%', overflow: 'auto', margin: "15px" }}>
+                        <Card.Body id="fade-in2" style={{ background: 'rgba(188,226,237,0.975)', boxShadow: '0 0px 10px 2px darkgrey, 0 0px 20px 5px black', borderRadius: '10px', height: 'auto' }}>
                             <h1> Your prescriptions </h1>
                             <hr></hr>
                             {SavedRx.length ? (
-                                <ListGroup variant="flush">
+                                <ListGroup variant="flush" style={{ overflow: 'auto', height: '350px', borderRadius: '5px' }}>
                                     {SavedRx.map(rx => (
                                         <ListGroup.Item key={rx._id}>
                                             <p style={{ fontSize: 'medium' }} > Name: {rx.brand_name}</p>
@@ -199,7 +199,7 @@ const Medication = () => {
                                     ))}
                                 </ListGroup>
                             ) : (
-                                    <h3>No meds yet</h3>
+                                    <h4>No Results to Display</h4>
                                 )}
                         </Card.Body>
                     </Col>
