@@ -35,11 +35,11 @@ function MoodPie(props) {
 
 
   const myData = [
-    { name: "Very Sad", value: one, position: "outsdie"},
-    { name: "Somewhat Sad", value: two },
-    { name: "Neutral", value: three },
-    { name: "Somewhat Happy", value: four },
-    { name: "Very Happy", value: five },
+    { name: "Very Sad", value: one, fill: '#DF4740' },
+    { name: "Somewhat Sad", value: two, fill: '#EE975A' },
+    { name: "Neutral", value: three, fill: '#65CA68' },
+    { name: "Somewhat Happy", value: four, fill: '#1489EA' },
+    { name: "Very Happy", value: five, fill: '#A926BB' },
   ];
   // const myData = [{ angle: one, label: showLabel(one, "Very Sad")}, { angle: two, label: showLabel(two, "Somewhat Sad")}, { angle: three, label: showLabel(three, "Neutral")}, { angle: four, label: showLabel(four, "Somewhat Happy"), className: 'somewhatHappyWedge'}, { angle: five, label: showLabel(five, "Very Happy")}]
   // console.log(myData)
