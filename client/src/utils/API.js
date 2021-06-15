@@ -8,7 +8,6 @@ export default {
     },
 
     saveRx: function (prescription) {
-        console.log("save rx", prescription);
         return axios.post("/api/medication", prescription);
     },
 
@@ -25,7 +24,6 @@ export default {
     },
 
     getIntake: function (user_id) {
-        console.log("get intake", user_id);
         return axios.get("/api/intake/user/" + user_id);
     },
 
@@ -46,7 +44,7 @@ export default {
     },
 
     saveUser: function (userData) {
-        axios.post("/api/user", userData)
+        return axios.post("/api/user", userData)
     },
 
     getUsers: function (id) {

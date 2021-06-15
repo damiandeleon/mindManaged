@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import RxResults from "../components/RxResults/RxResults";
 import Container from "../components/Container/Container";
+import { CgSmileMouthOpen } from 'react-icons/cg'
 import { Card, Form, ListGroup, Button, Alert, Row, Col, Jumbotron } from 'react-bootstrap';
 import "./Medication.css";
 import API from "../utils/API";
@@ -66,9 +67,6 @@ const Medication = () => {
           user_id: user.sub
       }
       API.saveNo(Dates)
-      .then(res => {
-        console.log(res)
-    })
         .catch(err => console.log(err));
 
       window.location.reload();
@@ -101,7 +99,7 @@ const Medication = () => {
             .then(res => {
 
                 let products = [];
-                res.data.results.forEach(item => {
+                res.data.results.forEach((item) => {
                     products = products.concat(item.products)
                 })
                 setState({ prescriptions: products })
@@ -180,7 +178,10 @@ const Medication = () => {
                 </Card.Body>
               </div>
             ) : (
-              <h3>No skipped days yet (good job!)</h3>
+              <div>
+                <h3 style={{margin: '20px'}}>Hooray, no skipped days!</h3>
+                <CgSmileMouthOpen style={{paddingBottom: '4px', fontSize: '50px', marginBottom: '15px'}} id="smiley"/>
+              </div>
             )}
         </Card>
       </Col>

@@ -20,7 +20,6 @@ function Charts() {
   const [DataCoords, setDataCoords] = useState([]);
 
   useEffect(() => {
-    console.log(user.sub)
     API.getEntries(user.sub)
       .then(res =>
         setDataCoords(res.data)
