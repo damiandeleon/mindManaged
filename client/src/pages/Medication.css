@@ -16,3 +16,22 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+#jumbo-bg {
+  color: white;
+  background: rgba(114, 134, 117, 0.8);
+  box-shadow: 0 4px 8px 0 rgb(56, 78, 56), 0 6px 20px 0 black;
+}
+
+#smiley {
+  animation: smiley 2s infinite ease;
+}
+
+@keyframes smiley { 
+	0% {transform: rotate(0deg);}  
+	20% {transform: rotate(45deg);} 
+  40% {transform: rotate(0deg);}
+  60% {transform: rotate(-45deg);}
+  80% {transform: rotate(0deg);}
+  100% {transform: rotate(0deg);}
+	}
