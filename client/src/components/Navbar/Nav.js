@@ -38,30 +38,41 @@ function Navigator() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <Link to="/charts" className={window.location.pathname === "/charts" ? "nav-link active" : "nav-link"}>
-                      Charts
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/journal" className={window.location.pathname === "/journal" ? "nav-link active" : "nav-link"}>
-                      Journal
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/medication" className={window.location.pathname === "/medication" ? "nav-link active" : "nav-link"}>
-                      Medication
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <LoginBtn name="Login" variant="outline-success"/>
-                  </li>
-                  <li className="nav-item">
-                    <LogoutBtn name="Logout" variant="outline-success"/>
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link to="/charts" className={window.location.pathname === "/charts" ? "nav-link active" : "nav-link"}>
+                    Charts
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/journal" className={window.location.pathname === "/journal" ? "nav-link active" : "nav-link"}>
+                    Journal
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/medication" className={window.location.pathname === "/medication" ? "nav-link active" : "nav-link"}>
+                    Medication
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <LoginBtn name="Login" variant="outline-success"/>
+                </li>
+                <li className="nav-item">
+                  <LogoutBtn name="Logout" variant="outline-success"/>
+                </li>
+              </ul>
+          </Nav>
+          {isAuthenticated &&
+            <div className="collapse navbar-collapse justify-content-end" >
+              <Nav className="ml-auto" >
+                <ul className="navbar-nav">
+                  <li className="nam-item">
+                    <img src={userData.picture} alt="user" style={{borderRadius: '50%', width: '30px'}} /> Hello, {userData.given_name}!
                   </li>
                 </ul>
-          </Nav>
+              </Nav>
+            </div>
+          }
         </Navbar.Collapse>
       </Navbar>
     );
